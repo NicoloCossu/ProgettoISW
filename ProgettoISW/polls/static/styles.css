@@ -1,0 +1,84 @@
+
+*{
+    background-color: rgb(233, 61, 152) ;
+}
+
+
+.pulsante{
+    background-color: rgb(119, 211, 213);
+    color: rgb(58, 58, 58);
+    border-color: rgb(175, 175, 175);
+    border-width: 3px;
+    width: 20%;
+    margin-left: 20%;
+    margin-top: 10%;
+    font-size: 25px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);    
+}
+
+.pulsante:hover {background-color: #00ddff;}
+
+a, a:hover, a:focus, a:active {
+    text-decoration: none;
+    color: inherit;
+}
+
+.pulsante_tabella{
+    box-shadow: none;
+}
+
+.pulsante_tabella:hover{
+    background: rgb(119, 211, 213);
+    font-weight: bold;
+}
+ 
+table{
+    background-color: rgb(175, 175, 175);
+    color: rgb(58, 58, 58);
+    margin: auto;
+    margin-top: 15%;
+    text-align: left;
+    width: 70%;
+    padding: 3px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    
+}
+
+th, td{
+    background-color: rgb(119, 211, 213);
+    font-size: 30px;
+    padding: 5px;
+    padding-right: 20px;
+}
+
+td{
+    font-size: 25px;
+}
+
+
+/* Dropdown Content (Hidden by Default) */
+.dropdown-content {
+    display: none;
+    position: absolute;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    margin-left: 20%;
+}
+
+  
+/* Links inside the dropdown */
+.dropdown-content a {
+    color: rgb(58, 58, 58);
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    background-color: rgb(119, 211, 213);
+    
+}
+  
+/* Change color of dropdown links on hover */
+.dropdown-content a:hover {background-color: #ddd;}
+  
+/* Show the dropdown menu on hover */
+.dropdown:hover .dropdown-content {display: block;}
+  

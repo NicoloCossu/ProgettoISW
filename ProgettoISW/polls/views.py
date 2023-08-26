@@ -6,4 +6,4 @@ def home(request):
         {'specie':'ciao2', 'razza': 'aaa', 'eta': 'tt','descrizione': 'd'},
         {'specie':'ciao3', 'razza': 'aaa', 'eta': 'tt','descrizione': 'd'},
     ]
-    return render(request, "polls/home.html",{'animals':animals})
+    return render(request, "home.html",{'animals':animals})
