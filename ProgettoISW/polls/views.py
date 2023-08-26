@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from django.contrib.auth.forms import UserCreationForm
 
 def home(request):
     animals= [
@@ -17,8 +18,8 @@ def registerPage(request):
         if form.is_valid():
             form.save()
     context={'form':form}
-    return render(request, 'polls/register.html',context)
+    return render(request, 'register.html',context)
 
 def loginPage(request):
     context={}
-    return render(request, 'polls/login.html',context)
+    return render(request, 'login.html',context)
