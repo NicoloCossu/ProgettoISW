@@ -1,5 +1,7 @@
 from django.shortcuts import render
 from django.contrib.auth.forms import UserCreationForm
+from django.urls import reverse_lazy
+from django.contrib.auth.views import LoginView
 
 def home(request):
     animals= [
@@ -19,7 +21,3 @@ def registerPage(request):
             form.save()
     context={'form':form}
     return render(request, 'register.html',context)
-
-def loginPage(request):
-    context={}
-    return render(request, 'login.html',context)
