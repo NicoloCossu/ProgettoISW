@@ -11,25 +11,27 @@
 .dropdown{
     background-color: rgb(119, 211, 213);
     color: rgb(58, 58, 58);
-    border-color: rgb(175, 175, 175);
+    border-color: #fff;
     border-width: 3px;
     width: 20%;
     margin-left: 20%;
     margin-top: 10%;
     font-size: 25px;
-    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);    
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2); 
+    border-radius: 3px;    
 }
 
 .pulsante{
     background-color: rgb(119, 211, 213);
     color: rgb(58, 58, 58);
-    border-color: rgb(175, 175, 175);
+    border-color: #fff;
     border-width: 3px;
     width: 20%;
     margin-right: 20%;
     margin-top: 10%;
     font-size: 25px;
-    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);    
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);   
+    border-radius: 3px;  
 }
 
 .pulsante:hover {background-color: #00ddff;}
@@ -49,15 +51,15 @@ a, a:hover, a:focus, a:active {
 }
  
 table{
-    background-color: rgb(175, 175, 175);
+    background-color: #e3e3e3;
     color: rgb(58, 58, 58);
     margin: auto;
     margin-top: 15%;
     text-align: left;
     width: 70%;
     padding: 3px;
-    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-    
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);    
+    border-radius: 3px;
 }
 
 th, td{
@@ -70,4 +72,51 @@ th, td{
 td{
     font-size: 25px;
 }
+
+
+
+
+
+
+
+/* Style for the form container */
+form {
+    max-width: 400px;
+    margin: auto;
+    padding: 20px;
+    border: 2px solid #e3e3e3;
+    border-radius: 5px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    background-color: #fff;
+    margin-top: 50px;
+}
+
+form label{
+    background-color: #fff;
+}
+
+/* Style for the form fields */
+form input[type="text"],
+form input[type="email"],
+form select {
+    width: 90%;
+    padding: 10px;
+    margin-bottom: 10px;
+    margin-top: 5px;
+    border: 1.5px solid #e3e3e3;
+    border-radius: 3px;
+    background-color: #fff;
+}
+
+/* Style for the submit button */
+form button[type="submit"] {
+    width: 100%;
+    padding: 10px;
+    background-color: rgb(119, 211, 213);
+    color: #fff;
+    border: 1px solid #e3e3e3;
+    border-radius: 3px;
+}
+
+form button:hover {background-color: #00ddff;}
 
