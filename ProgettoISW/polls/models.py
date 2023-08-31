@@ -13,3 +13,9 @@ class Utente(models.Model):
     età = models.IntegerField(default=18)
     email = models.CharField(max_length=400)
     password = models.CharField(max_length=30)
+
+class RichiestaAdozione(models.Model):
+    nomeCognome = models.CharField(max_length=320)
+    indirizzo = models.CharField(max_length= 400)
+    emailNumeroDiTelefono = models.CharField(max_length= 500)
+

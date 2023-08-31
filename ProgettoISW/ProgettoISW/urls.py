@@ -23,5 +23,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path("home/", views.home, name="home"),
     path('register/',views.registerPage, name='register'),
-    path('',auth_views.LoginView.as_view(), name='login')
+    path('',auth_views.LoginView.as_view(), name='login'),
+    path('adotta/',views.invia_richiesta_adozione, name='adotta'),
+    path('adotta/successo/',views.successo, name='successo')
 ]

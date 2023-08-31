@@ -36,13 +36,13 @@
             </thead>
 
             <tbody> 
-                {% for animal in animals %}
+                {% for animal in animali %}
                 <tr>
                     <td>{{ animal.specie }}</td>
                     <td>{{ animal.razza }}</td>
-                    <td>{{ animal.eta }}</td>
+                    <td>{{ animal.età }}</td>
                     <td>{{ animal.descrizione }}</td>
-                    <td><a href="https://www.google.it/" class="pulsante pulsante_tabella">adotta</a></td>
+                    <td><a href="http://127.0.0.1:8000/adotta/" class="pulsante pulsante_tabella">adotta</a></td>
                 </tr>
                 {% endfor %}
             </tbody>
