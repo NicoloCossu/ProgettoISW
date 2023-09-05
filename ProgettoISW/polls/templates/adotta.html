@@ -13,6 +13,11 @@
     </head>
     <body>
 
+        <div class="navbar">
+            <a class="button_link" href="http://www.google.com/">
+                <button class="pulsante" >Home</button>
+            </a>
+        </div>
 
         <form method="POST" action="{% url 'adotta' %}">
             {% csrf_token %}
