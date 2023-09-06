@@ -14,7 +14,7 @@
     <body>
 
         <div class="navbar">
-            <a class="button_link" href="http://www.google.com/">
+            <a class="button_link" href="http://127.0.0.1:8000/home/">
                 <button class="pulsante" >Home</button>
             </a>
         </div>
@@ -22,7 +22,7 @@
         <form method="POST" action="{% url 'adotta' %}">
             {% csrf_token %}
             {{ form.as_table }}
-            <button type="submit">invia modulo</button>
+            <button type="submit">Invia</button>
         </form>
 
         
