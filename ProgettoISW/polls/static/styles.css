@@ -81,10 +81,6 @@ td{
 
 
 
-
-
-
-
 /* Style for the form container */
 form {
     max-width: 400px;
@@ -105,6 +101,7 @@ form label{
 /* Style for the form fields */
 form input[type="text"],
 form input[type="email"],
+form input[type="password"],
 form select {
     width: 90%;
     padding: 10px;
@@ -116,7 +113,7 @@ form select {
 }
 
 /* Style for the submit button */
-form button[type="submit"] {
+form button[type="submit"], input{
     width: 100%;
     padding: 10px;
     background-color: rgb(119, 211, 213);
@@ -124,6 +121,19 @@ form button[type="submit"] {
     border: 1px solid #e3e3e3;
     border-radius: 3px;   
     font-size: 15px;
+    color:black;
 }
 
-form button:hover {background-color: #00ddff;}
+form button:hover, input:hover {background-color: #00ddff;}
+
+p{
+    background-color: #fff;
+    padding-bottom: 5px;
+    
+}
+
+.helptext, ul, li{
+    background-color: #fff;
+    font-size: 15px;
+    padding-bottom: 10px;
+}
