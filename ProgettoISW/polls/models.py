@@ -2,8 +2,8 @@ from django.db import models
 
 # Create your models here.
 class Animale(models.Model):
-    razza = models.CharField(max_length=50)
     specie = models.CharField(max_length=100)
+    razza = models.CharField(max_length=50)
     età = models.IntegerField(default=0)
     descrizione = models.CharField(max_length=400)
 

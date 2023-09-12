@@ -56,3 +56,24 @@ class UtenteTestCase(TestCase):
         self.assertEqual(len(utenteCorretto.cognome) >0, True)
         self.assertEqual(len(utenteCorretto.cognome) <=100, True)
         self.assertEqual(utenteCorretto.età>0, True)
+
+
+#Test unitario per la funzione di filtraggio degli animali in base ai campi definiti nel model Animale
+class FilterCase(TestCase):
+    def setUp(self):
+        Animale.objects.create(specie="Cane", razza="Pitbull", età=3, descrizione="Amichevole")
+        Animale.objects.create(specie="Cane", razza="Labrador", età=10, descrizione="Cattivo")
+        Animale.objects.create(specie="Cane", razza="Labrador", età=12, descrizione="Brutto")
+
+    def test_filtro_razza(self):
+        risultati = Animale.objects.filter(razza = 'Labrador')
+        self.assertEqual(len(risultati), 2)
+
+    def test_filtro_specie(self):
+        risultati = Animale.objects.filter(specie = 'Cane')
+        self.assertEqual(len(risultati), 3)
+
+    def test_filtro_descrizione(self):
+        risultati = Animale.objects.filter(descrizione = 'Giocoso')
+        self.assertEqual(len(risultati), 0)
+

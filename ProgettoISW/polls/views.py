@@ -4,12 +4,22 @@ from django.urls import reverse_lazy
 from django.contrib.auth.views import LoginView
 from .models import Animale
 from .forms import RichiestaAdozioneForm
+from .filters import AnimalFilter
 
 def home(request):
     animali = Animale.objects.all() 
-    return render(request, "home.html",{'animali':animali})
+
+    myFilter = AnimalFilter(request.GET, queryset=animali)
+    animali = myFilter.qs
+
+    context = {'animali': animali, 'myFilter': myFilter}
+    return render(request, "home.html", context)
+
+
 def successo(request):
     return render(request, 'successo.html')
+
+
 def invia_richiesta_adozione(request):
     if request.method == 'POST':
         form = RichiestaAdozioneForm(request.POST)
@@ -19,6 +29,7 @@ def invia_richiesta_adozione(request):
     else:
         form = RichiestaAdozioneForm()
     return render(request, 'adotta.html', {'form': form})
+
 
 def registerPage(request):
     form= UserCreationForm()
