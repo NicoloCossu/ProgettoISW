@@ -26,7 +26,7 @@
 
 .button_link{
     width: 150px;
-    margin-top: 10%;
+    margin-top: 50px;
     align-self: center;
 }
 
@@ -60,12 +60,13 @@ a, a:hover, a:focus, a:active {
 table{
     background-color: rgb(119, 211, 213);
     margin: auto;
-    margin-top: 10%;
+    margin-top: 50px;
     text-align: left;
     width: 70%;
     padding: 3px;
     box-shadow: 7px 7px rgb(146, 5, 94);    
     border-radius: 5px;
+    margin-bottom: 100px;
 }
 
 th, td{
@@ -102,7 +103,7 @@ form label{
 form input[type="text"],
 form input[type="email"],
 form input[type="password"],
-form select {
+form select, #id_età {
     width: 90%;
     padding: 10px;
     margin-bottom: 10px;
@@ -136,4 +137,29 @@ p{
     background-color: #fff;
     font-size: 15px;
     padding-bottom: 10px;
+}
+
+#id_specie, #id_razza{
+    width: 100px;
+}
+
+#id_età{
+    width: 33px;
+}
+
+#id_descrizione{
+    width: 150px;
+}
+
+#form_ricerca{
+    width: 751px;
+    max-width: none;
+}
+
+@media only screen and (max-width: 900px){
+    
+    #form_ricerca{
+        width: 375px;
+    }
+
 }

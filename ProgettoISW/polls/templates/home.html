@@ -14,24 +14,19 @@
     <body>
 
         <div class="navbar">
-            <select class="dropdown" placeholder="Filtri">
-                <option value="">Link 1</option>
-                <option value="">Link 2</option>
-                <option value="">Link 3</option>
-            </select>
-
+            
             <a class="button_link" href="http://www.google.com/">
                 <button class="pulsante" >Logout</button>
             </a>
+
         </div>
 
-        <form method="get">
+        <form id= "form_ricerca" method="get">
             {{myFilter.form}}
 
-            <button class="btn btn-primary" type="submit">
-                Cerca
-            </button>
+            <button class="btn btn-primary" type="submit"> Cerca </button>
         </form>
+
 
         <table> 
             <thead>
@@ -43,6 +38,15 @@
             </thead>
 
             <tbody> 
+
+                <tr>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>-</td>
+                </tr>
+                
                 {% for animal in animali %}
                 <tr>
                     <td>{{ animal.specie }}</td>
