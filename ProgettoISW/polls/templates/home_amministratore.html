@@ -1,0 +1,73 @@
+{% load static %}
+
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>Home Page</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" type="text/css" href="{% static 'styles.css' %}">
+    </head>
+    <body>
+
+        <div class="navbar">
+            
+            <a class="button_link" href="http://www.google.com/">
+                <button class="pulsante" >Filtri</button>
+            </a>
+            <a class="button_link" href="http://www.google.com/">
+                <button class="pulsante" >Lista Animali</button>
+            </a>
+            <a class="button_link" href="http://www.google.com/">
+                <button class="pulsante" >Logout</button>
+            </a>
+
+        </div>
+
+        
+
+
+        <table> 
+            <thead>
+                <th>Nome Richiedente</th>
+                <th>Indirizzo</th>
+                <th>Lavoro</th>
+                <th>Specie Animale</th>
+                <th>Razza Animale</th>
+                <th>Età</th>
+                <th>Azione</th>
+            </thead>
+
+            <tbody> 
+
+                <tr>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>-</td>
+                </tr>
+                
+                {% for richiesta in richieste %}
+                <tr>
+                    <td>{{ richiesta.NomeCognome }}</td>
+                    <td>{{ richiesta.indirizzo }}</td>
+                    <td>Lavoro</td>
+                    <td>Specie Animale</td>
+                    <td>Razza Animale</td>
+                    <td>Età</td>
+                    <td>
+                        <a href="http://127.0.0.1:8000/" class="pulsante pulsante_tabella">accetta</a>
+                        <a href="http://127.0.0.1:8000/" class="pulsante pulsante_tabella">rifiuta</a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </body>
+</html>

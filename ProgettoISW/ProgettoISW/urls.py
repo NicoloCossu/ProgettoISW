@@ -22,6 +22,7 @@ from polls import views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path("home/", views.home, name="home"),
+    path('home_amministratore/', views.homeAmministratore, name='home_amministratore'),
     path('register/',views.registerPage, name='register'),
     path('',auth_views.LoginView.as_view(), name='login'),
     path('adotta/',views.invia_richiesta_adozione, name='adotta'),
