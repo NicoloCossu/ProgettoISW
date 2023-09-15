@@ -16,9 +16,6 @@
         <div class="navbar">
             
             <a class="button_link" href="http://www.google.com/">
-                <button class="pulsante" >Filtri</button>
-            </a>
-            <a class="button_link" href="http://www.google.com/">
                 <button class="pulsante" >Lista Animali</button>
             </a>
             <a class="button_link" href="http://www.google.com/">
@@ -27,8 +24,11 @@
 
         </div>
 
-        
+        <form id= "form_ricerca" method="get">
+            {{myFilter.form}}
 
+            <button class="btn btn-primary" type="submit"> Cerca </button>
+        </form>
 
         <table> 
             <thead>
