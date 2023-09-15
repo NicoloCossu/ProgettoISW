@@ -6,3 +6,8 @@ class AnimalFilter(django_filters.FilterSet):
     class Meta:
         model = Animale
         fields = '__all__'
+
+class RichesteFilter(django_filters.FilterSet):
+    class Meta:
+        model = RichiestaAdozione
+        fields = '__all__'

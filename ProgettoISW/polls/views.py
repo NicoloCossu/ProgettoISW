@@ -4,7 +4,7 @@ from django.urls import reverse_lazy
 from django.contrib.auth.views import LoginView
 from .models import Animale, RichiestaAdozione
 from .forms import RichiestaAdozioneForm
-from .filters import AnimalFilter
+from .filters import AnimalFilter, RichesteFilter
 from django.contrib.auth.decorators import user_passes_test
 
 @user_passes_test(lambda u: not u.is_superuser, login_url='home_amministratore')
@@ -20,7 +20,11 @@ def home(request):
 @user_passes_test(lambda u: u.is_superuser, login_url='home')
 def homeAmministratore(request):
     richieste = RichiestaAdozione.objects.all()
-    context = {'richieste':richieste}
+
+    myFilter = RichesteFilter(request.GET, queryset=richieste)
+    richieste = myFilter.qs
+
+    context = {'richieste':richieste, 'myFilter': myFilter}
     return render(request,'home_amministratore.html',context)
 
 def successo(request):
