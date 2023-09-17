@@ -18,7 +18,7 @@ from django.contrib import admin
 from django.urls import include, path
 from django.contrib.auth import views as auth_views
 
-from polls import views
+from adozione import views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path("home/", views.home, name="home"),
@@ -26,5 +26,6 @@ urlpatterns = [
     path('register/',views.registerPage, name='register'),
     path('',auth_views.LoginView.as_view(), name='login'),
     path('adotta/',views.invia_richiesta_adozione, name='adotta'),
-    path('adotta/successo/',views.successo, name='successo')
+    path('adotta/successoRichiestaAdozione/',views.successoRichiestaAdozione, name='successoRichiestaAdozione'),
+    path('register/successoRegistrazione/',views.successoRegistrazione, name='successoRegistrazione')
 ]
