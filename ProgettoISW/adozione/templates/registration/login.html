@@ -14,16 +14,18 @@
     <body>
 
         <div class="navbar">
-            <a class="button_link" href="http://127.0.0.1:8000/home/">
-                <button class="pulsante" >Home</button>
+            <a class="button_link" href="http://127.0.0.1:8000/register/">
+                <button class="pulsante" >Register</button>
             </a>
         </div>
 
-        <form method="POST" action="{% url 'adotta' animale.ID_animale %}">
+        {% block content %}
+        <form method="post">
             {% csrf_token %}
-            {{ form.as_table }}
-            <button type="submit">Invia</button>
+            {{ form.as_p }}
+            <button type="submit">Login</button>
         </form>
+        {% endblock %}
 
         
     </body>

@@ -1,3 +1,4 @@
+
 {% load static %}
 
 <!DOCTYPE html>
@@ -14,17 +15,22 @@
     <body>
 
         <div class="navbar">
-            <a class="button_link" href="http://127.0.0.1:8000/home/">
-                <button class="pulsante" >Home</button>
+            <a class="button_link" href="http://127.0.0.1:8000//">
+                <button class="pulsante" >Login</button>
             </a>
         </div>
 
-        <form method="POST" action="{% url 'adotta' animale.ID_animale %}">
+        
+        <form method="POST" action="">
             {% csrf_token %}
             {{ form.as_table }}
-            <button type="submit">Invia</button>
+            <input type="submit" name="Create User"></input>
         </form>
 
         
     </body>
+    
 </html>
+
+
+

@@ -53,8 +53,10 @@
                     <td>{{ animal.razza }}</td>
                     <td>{{ animal.età }}</td>
                     <td>{{ animal.descrizione }}</td>
-                    <td><a href="http://127.0.0.1:8000/adotta/" class="pulsante pulsante_tabella">adotta</a></td>
-                </tr>
+                    <td>
+                        <a href="{% url 'adotta' animal.ID_animale %}" class="pulsante pulsante_tabella">adotta</a>
+                    </td>
+                                    </tr>
                 {% endfor %}
             </tbody>
         </table>

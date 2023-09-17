@@ -25,7 +25,5 @@ urlpatterns = [
     path('home_amministratore/', views.homeAmministratore, name='home_amministratore'),
     path('register/',views.registerPage, name='register'),
     path('',auth_views.LoginView.as_view(), name='login'),
-    path('adotta/',views.invia_richiesta_adozione, name='adotta'),
-    path('adotta/successoRichiestaAdozione/',views.successoRichiestaAdozione, name='successoRichiestaAdozione'),
-    path('register/successoRegistrazione/',views.successoRegistrazione, name='successoRegistrazione')
+    path('adotta/<int:animale_id>/', views.adotta, name='adotta'),
 ]
