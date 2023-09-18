@@ -1,16 +1,18 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.forms import UserCreationForm
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login, logout
 from django.urls import reverse_lazy
 from django.contrib.auth.views import LoginView
 from django.contrib.auth.models import User  # Assicurati di importare il modello User
 from .models import Animale, RichiestaAdozione
 from .forms import RichiestaAdozioneForm
 from .filters import AnimalFilter, RichesteFilter
-from django.contrib.auth.decorators import user_passes_test
+from django.contrib.auth.decorators import user_passes_test, login_required
 
 @user_passes_test(lambda u: not u.is_superuser, login_url='home_amministratore')
+@login_required(login_url='login')
 def home(request):
+    
     animali = Animale.objects.all() 
 
     myFilter = AnimalFilter(request.GET, queryset=animali)
@@ -30,7 +32,6 @@ def homeAmministratore(request):
 
     context = {'richieste':richieste, 'myFilter': myFilter}
     return render(request,'home_amministratore.html',context)
-
 
 
 #invio della richiesta di adozione prendendo l'id dell'animale selezionato e lo user loggato al momento dell'invio della richiesta
@@ -53,6 +54,9 @@ def adotta(request, animale_id):
     context = {'animale': animale, 'form': form}
     return render(request, 'adotta.html', context)
 
+def logout_view(request):
+    logout(request)
+    return  redirect('home')
 
 def registerPage(request):
     if request.method == 'POST':

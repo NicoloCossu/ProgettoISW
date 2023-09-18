@@ -25,5 +25,6 @@ urlpatterns = [
     path('home_amministratore/', views.homeAmministratore, name='home_amministratore'),
     path('register/',views.registerPage, name='register'),
     path('',auth_views.LoginView.as_view(), name='login'),
+    path('logout/', views.logout_view, name='logout'),
     path('adotta/<int:animale_id>/', views.adotta, name='adotta'),
 ]
