@@ -22,6 +22,7 @@ from adozione import views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path("home/", views.home, name="home"),
+    path('lista_animaliAmministratore/', views.lista_animaliAmministratore, name = 'lista_animaliAmministratore'),
     path('home_amministratore/', views.homeAmministratore, name='home_amministratore'),
     path('register/',views.registerPage, name='register'),
     path('',auth_views.LoginView.as_view(), name='login'),

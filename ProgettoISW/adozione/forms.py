@@ -23,4 +23,4 @@ class RichiestaAdozioneForm(forms.ModelForm):
         richiesta_adozione.emailNumeroDiTelefono = self.cleaned_data['emailNumeroDiTelefono']
         if commit:
             richiesta_adozione.save()
-        return richiesta_adozione
+        return richiesta_adozione 

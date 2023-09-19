@@ -14,14 +14,9 @@
     <body>
 
         <div class="navbar">
-            
-            <a class="button_link" href="{% url 'lista_animaliAmministratore' %}">
-                <button class="pulsante" >Lista Animali</button>
-            </a>
             <a class="button_link" href="{% url 'logout' %}">
                 <button class="pulsante" >Logout</button>
             </a>
-
         </div>
 
         <form id= "form_ricerca" method="get">
@@ -30,14 +25,13 @@
             <button class="btn btn-primary" type="submit"> Cerca </button>
         </form>
 
+
         <table> 
             <thead>
-                <th>Nome e cognome</th>
-                <th>Indirizzo</th>
-                <th>Lavoro</th>
-                <th>Specie Animale</th>
-                <th>Razza Animale</th>
+                <th>Specie</th>
+                <th>Razza</th>
                 <th>Età</th>
+                <th>Descrizione</th>
                 <th>Azione</th>
             </thead>
 
@@ -49,23 +43,18 @@
                     <td>-</td>
                     <td>-</td>
                     <td>-</td>
-                    <td>-</td>
-                    <td>-</td>
                 </tr>
                 
-                {% for richiesta in richieste %}
+                {% for animal in animali %}
                 <tr>
-                    <td>{{ richiesta.nomeCognome }}</td>
-                    <td>{{ richiesta.indirizzo }}</td>
-                    <td>Lavoro</td>
-                    <td> {{richiesta.animale.specie}}</td>
-                    <td> {{richiesta.animale.razza}}</td>
-                    <td> {{richiesta.animale.età}}</td>
+                    <td>{{ animal.specie }}</td>
+                    <td>{{ animal.razza }}</td>
+                    <td>{{ animal.età }}</td>
+                    <td>{{ animal.descrizione }}</td>
                     <td>
-                        <a href="{% url 'accetta_rifiuta_view' richiesta.ID_richiestaAdozione 'true' %}" class="pulsante pulsante_tabella">Accetta</a>
-                        <a href="{% url 'accetta_rifiuta_view' richiesta.ID_richiestaAdozione 'false' %}" class="pulsante pulsante_tabella">Rifiuta</a>
+                        <a href="{% url 'adotta' animal.ID_animale %}" class="pulsante pulsante_tabella">Modifica</a>
                     </td>
-                </tr>
+                    </tr>
                 {% endfor %}
             </tbody>
         </table>
