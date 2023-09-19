@@ -22,6 +22,16 @@ def home(request):
     return render(request, "home.html", context)
 
 
+def lista_animaliAmministratore(request):
+    animali = Animale.objects.all() 
+
+    myFilter = AnimalFilter(request.GET, queryset=animali)
+    animali = myFilter.qs
+
+    context = {'animali': animali, 'myFilter': myFilter}
+    return render(request, "lista_animaliAmministratore.html", context)
+
+
 
 @user_passes_test(lambda u: u.is_superuser, login_url='home')
 def homeAmministratore(request):
@@ -59,6 +69,9 @@ def adotta(request, animale_id):
         form = RichiestaAdozioneForm(initial={'animale': animale_id, 'utente': request.user})
     context = {'animale': animale, 'form': form}
     return render(request, 'adotta.html', context)
+
+#View per modificare gli animali (dalla pagina lista_AnimaliAmministratore)
+
 
 def logout_view(request):
     logout(request)
@@ -98,4 +111,3 @@ def accetta_rifiuta_view(request, richiesta_id, risultato):
             render(request, 'successoRegistrazione.html')  # Reindirizza a una pagina di successo
         return render(request, 'successoRegistrazione.html')  # Reindirizza a una pagina di successo
 
-   
