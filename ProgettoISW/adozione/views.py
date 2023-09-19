@@ -48,6 +48,12 @@ def adotta(request, animale_id):
             richiesta_adozione.animale = animale
             richiesta_adozione.utente = request.user
             richiesta_adozione.save()        
+
+            #Se la richiesta viene accettata, tolgo l'animale per cui viene effettuata la richiesta
+            #dalla lista animali
+            if request.POST.get('azione') == 'accetta':
+                animale.delete()
+
             return render(request, 'successoRegistrazione.html')
     else:
         form = RichiestaAdozioneForm(initial={'animale': animale_id, 'utente': request.user})
@@ -71,3 +77,25 @@ def registerPage(request):
     context = {'form': form}
     return render(request, 'register.html', context)
 
+def accetta_rifiuta_view(request, richiesta_id, risultato):
+        azione = risultato.lower() == 'true'
+        richiesta = RichiestaAdozione.objects.get(pk=richiesta_id)
+        ID_animale = int(richiesta.animale.ID_animale)
+        animale = Animale.objects.get(pk=ID_animale)
+        if azione:
+            # Esegui l'azione di accettazione (ad esempio, cambia lo stato della richiesta)
+            
+            richiesta.richiesta = 'Accettata'
+            richiesta.save()
+
+            # Elimina l'animale
+
+            animale.delete()
+            render(request, 'successoRegistrazione.html')  # Reindirizza a una pagina di successo
+        else:
+            # Esegui l'azione di rifiuto (ad esempio, cambia lo stato della richiesta)
+            richiesta.delete()
+            render(request, 'successoRegistrazione.html')  # Reindirizza a una pagina di successo
+        return render(request, 'successoRegistrazione.html')  # Reindirizza a una pagina di successo
+
+   

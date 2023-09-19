@@ -62,8 +62,8 @@
                     <td>Razza Animale</td>
                     <td>Età</td>
                     <td>
-                        <a href="http://127.0.0.1:8000/" class="pulsante pulsante_tabella">accetta</a>
-                        <a href="http://127.0.0.1:8000/" class="pulsante pulsante_tabella">rifiuta</a>
+                        <a href="{% url 'accetta_rifiuta_view' richiesta.ID_richiestaAdozione 'true' %}" class="pulsante pulsante_tabella">Accetta</a>
+                        <a href="{% url 'accetta_rifiuta_view' richiesta.ID_richiestaAdozione 'false' %}" class="pulsante pulsante_tabella">Rifiuta</a>
                     </td>
                 </tr>
                 {% endfor %}

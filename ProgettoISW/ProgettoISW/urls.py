@@ -27,4 +27,5 @@ urlpatterns = [
     path('',auth_views.LoginView.as_view(), name='login'),
     path('logout/', views.logout_view, name='logout'),
     path('adotta/<int:animale_id>/', views.adotta, name='adotta'),
+    path('accetta_rifiuta_view/<int:richiesta_id>/<str:risultato>/', views.accetta_rifiuta_view, name='accetta_rifiuta_view')
 ]
