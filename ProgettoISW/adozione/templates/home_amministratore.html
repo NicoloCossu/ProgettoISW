@@ -32,7 +32,7 @@
 
         <table> 
             <thead>
-                <th>Nome Richiedente</th>
+                <th>Nome e cognome</th>
                 <th>Indirizzo</th>
                 <th>Lavoro</th>
                 <th>Specie Animale</th>
@@ -55,12 +55,12 @@
                 
                 {% for richiesta in richieste %}
                 <tr>
-                    <td>{{ richiesta.NomeCognome }}</td>
+                    <td>{{ richiesta.nomeCognome }}</td>
                     <td>{{ richiesta.indirizzo }}</td>
                     <td>Lavoro</td>
-                    <td>Specie Animale</td>
-                    <td>Razza Animale</td>
-                    <td>Età</td>
+                    <td> {{richiesta.animale.specie}}</td>
+                    <td> {{richiesta.animale.razza}}</td>
+                    <td> {{richiesta.animale.età}}</td>
                     <td>
                         <a href="{% url 'accetta_rifiuta_view' richiesta.ID_richiestaAdozione 'true' %}" class="pulsante pulsante_tabella">Accetta</a>
                         <a href="{% url 'accetta_rifiuta_view' richiesta.ID_richiestaAdozione 'false' %}" class="pulsante pulsante_tabella">Rifiuta</a>
