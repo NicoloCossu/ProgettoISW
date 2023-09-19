@@ -10,4 +10,4 @@ class AnimalFilter(django_filters.FilterSet):
 class RichesteFilter(django_filters.FilterSet):
     class Meta:
         model = RichiestaAdozione
-        fields = '__all__'
+        fields = ['nomeCognome', 'indirizzo', 'emailNumeroDiTelefono', 'animale']
