@@ -23,4 +23,9 @@ class RichiestaAdozioneForm(forms.ModelForm):
         richiesta_adozione.emailNumeroDiTelefono = self.cleaned_data['emailNumeroDiTelefono']
         if commit:
             richiesta_adozione.save()
-        return richiesta_adozione 
+        return richiesta_adozione
+    
+class ModificaAnimaleForm(forms.ModelForm):
+    class Meta:
+        model = Animale
+        fields = ['specie', 'razza', 'età', 'descrizione']    

@@ -52,7 +52,7 @@
                     <td>{{ animal.età }}</td>
                     <td>{{ animal.descrizione }}</td>
                     <td>
-                        <a href="{% url 'adotta' animal.ID_animale %}" class="pulsante pulsante_tabella">Modifica</a>
+                        <a href="{% url 'modifica_animale' animal.ID_animale %}" class="pulsante pulsante_tabella">Modifica</a>
                     </td>
                     </tr>
                 {% endfor %}
