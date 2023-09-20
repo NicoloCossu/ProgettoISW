@@ -5,6 +5,13 @@ from django.urls import reverse
 from adozione.filters import AnimalFilter, RichesteFilter
 from django.contrib.auth import login, logout
 
+from selenium import webdriver
+from selenium.webdriver.common.keys import Keys 
+import time
+import os
+from selenium.webdriver.common.by import By
+from selenium.common.exceptions import NoSuchElementException
+
 class LogoutViewTestCase(TestCase):
     def setUp(self):
         # Crea un utente di prova per il test
@@ -228,3 +235,48 @@ class RegistrationTest(TestCase):
         self.assertEqual(response.status_code, 200)
         # Verifica che l'utente non sia stato creato
         self.assertFalse(User.objects.filter(username='NewUser').exists())
+
+####################################################################################
+#test di accettazione
+# lato admin
+# test ok
+class LoginAdminTest(TestCase):
+    def setUp(self):
+        #drivers_dir = os.path.join(os.path.dirname(__file__),'drivers')
+        #chrome_driver_path = os.path.join(drivers_dir,'chromedriver')
+        self.browser = webdriver.Chrome()
+        self.live_server_url= "http://localhost:8000"
+        self.aux_url= "?next=/home/"
+        super(LoginAdminTest, self).setUp()
+        
+    def tearDown(self):
+        self.browser.quit()
+        super(LoginAdminTest,self).tearDown()
+    
+    def test_login_amministratore_successo(self):
+        self.browser.get(self.live_server_url)
+        time.sleep(3)
+        self.browser.find_element('name','username').send_keys('Admin')
+        self.browser.find_element('name','password').send_keys('Admin')
+        text = "Login"
+        login_btn = self.browser.find_element(By.XPATH, f'//*[contains(text(), "{text}")]')
+        login_btn.click()
+        time.sleep(3)
+        auxUrl = self.live_server_url + reverse('home_amministratore') + self.aux_url
+        self.assertEquals(self.browser.current_url,auxUrl)
+    
+    def test_login_amministratore_errore(self):
+        self.browser.get(self.live_server_url)
+        time.sleep(3)
+        self.browser.find_element('name','username').send_keys('Admin')
+        time.sleep(1)
+        self.browser.find_element('name','password').send_keys('wrong password')
+        time.sleep(1)
+        text = "Login"
+        login_btn = self.browser.find_element(By.XPATH, f'//*[contains(text(), "{text}")]')
+        login_btn.click()
+        time.sleep(3)
+        auxUrl = self.live_server_url + "/"
+        self.assertEquals(self.browser.current_url,auxUrl)
+        errorElem = self.browser.find_element(By.CLASS_NAME,"errorlist")
+        self.assertTrue(errorElem.is_displayed())
