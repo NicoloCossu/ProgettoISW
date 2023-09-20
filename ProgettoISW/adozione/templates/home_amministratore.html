@@ -52,7 +52,7 @@
                 </tr>
                 
                 {% for richiesta in richieste %}
-                <tr>
+                <tr id={{richiesta.ID_richiestaAdozione}}>
                     <td>{{ richiesta.nomeCognome }}</td>
                     <td>{{ richiesta.indirizzo }}</td>
                     <td> {{richiesta.animale.specie}}</td>
