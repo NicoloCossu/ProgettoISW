@@ -2,7 +2,47 @@ from django.test import TestCase
 from .models import Animale, RichiestaAdozione
 from django.contrib.auth.models import User
 from django.urls import reverse
-from adozione.filters import AnimalFilter, RichesteFilter # Assicurati di importare i tuoi filtri correttamente
+from adozione.filters import AnimalFilter, RichesteFilter
+from django.contrib.auth import login, logout
+
+class LogoutViewTestCase(TestCase):
+    def setUp(self):
+        # Crea un utente di prova per il test
+        self.user = User.objects.create_user(
+            username='testuser',
+            password='testpassword'
+        )
+        #Fa un test per la creazione 
+        def test_logout_view(self):
+            self.client.login(username='testuser', password='testpassword')
+            response = self.client.get(reverse('logout'))
+            self.assertRedirects(response, reverse('home'))
+            self.assertFalse(response.wsgi_request.user.is_authenticated)
+
+class UserOrSuperUserAdmin(TestCase):
+    def setUp(self):
+        self.user = User.objects.create_user(
+            username='testuser',
+            password='testpassword'
+        )
+        self.superuser = User.objects.create_superuser(
+            username='superuser',
+            password='superuserpassword',
+            email='superuser@example.com'
+        )
+    def test_home_view_superuser(self):
+            # Effettua l'accesso come superuser 
+            self.client.login(username='superuser', password='superuserpassword')
+            response = self.client.get(reverse('home_amministratore'))
+            self.assertEqual(response.status_code, 302)
+
+    def test_home_view_regular_user(self):
+            # Effettua l'accesso come utente normale (quindi il test passa)
+            self.client.logout()
+            self.client.login(username='testuser', password='testpassword')
+            response = self.client.get(reverse('home'))
+            self.assertEqual(response.status_code, 302)
+
 #test unitario per la classe Animale fa un controllo sulla lunghezza dei campi che deve essere maggiore di 0, non possiamo inserire una
 #stringa vuota quando viene inserito nel db e viene fatto un controllo anche sulla lunghezza massima definita nei models.
 class AnimaleTestCase(TestCase):
@@ -25,19 +65,36 @@ class AnimaleCorrettoTestCase(TestCase):
         self.assertTrue(len(self.animale.specie) > 0, "Il campo specie dovrebbe avere una lunghezza maggiore di 0")
 
 
-#test unitario per la classe RichiestaAdozione permette un controllo sulla lunghezza dei campi imponendo una lunghezza minima e una massima
-class RichiestaAdozioneTestCase(TestCase):
+class AdottaViewTestCase(TestCase):
     def setUp(self):
-        RichiestaAdozione.objects.create(nomeCognome="Mario Rossi", indirizzo="Via Roma 10, Cagliari", emailNumeroDiTelefono="ClaudioCrobu69@gmail.com")
+        # Crea un utente di esempio e un animale di esempio
+        self.user = User.objects.create_user(username='testuser', password='testpassword')
+        self.animale = Animale.objects.create(ID_animale = 1, specie='Gatto', razza='GattoBlu', età=12, descrizione="Carino")
 
-    def test_lunghezzaCampi(self):
-        richiestaAdozione = RichiestaAdozione.objects.get()
-        self.assertEqual(len(richiestaAdozione.nomeCognome) > 0,  True)
-        self.assertEqual(len(richiestaAdozione.nomeCognome) <= 320,  True)
-        self.assertEqual(len(richiestaAdozione.indirizzo) > 0,  True)
-        self.assertEqual(len(richiestaAdozione.indirizzo) < 400,  True)
-        self.assertEqual(len(richiestaAdozione.emailNumeroDiTelefono) > 0,  True)
-        self.assertEqual(len(richiestaAdozione.emailNumeroDiTelefono) <= 500,  True)
+    def test_adotta_view(self):
+        # Effettua l'accesso come l'utente di esempio
+        self.client.login(username='testuser', password='testpassword')
+
+        url = reverse('adotta', args=[self.animale.ID_animale])
+
+        # Simula una richiesta POST al link 'adotta' con i dati del form
+        response = self.client.post(url, {
+            'nomeCognome': 'Nome Cognome', 
+            'indirizzo': 'Indirizzo',  
+            'emailNumeroDiTelefono': 'email@example.com',  
+            'azione': 'in attesa',  
+        })
+
+        # Verifica che la risposta abbia uno stato di successo (ad esempio, 200 OK)
+        self.assertEqual(response.status_code, 200)
+        
+        # Verifica che il modello RichiestaAdozione sia stato creato
+        self.assertTrue(RichiestaAdozione.objects.filter(utente= self.user, animale=self.animale).exists())
+
+        # Verifica che il template di successo sia stato utilizzato
+        self.assertTemplateUsed(response, 'successoRegistrazione.html')
+
+
 
 class AnimalFilterTest(TestCase):
     def test_animal_filter(self):

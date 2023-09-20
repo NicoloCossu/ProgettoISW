@@ -9,10 +9,17 @@ from .forms import RichiestaAdozioneForm, ModificaAnimaleForm
 from .filters import AnimalFilter, RichesteFilter
 from django.contrib.auth.decorators import user_passes_test, login_required
 
+
+import logging
+
+# Configura il logger
+logging.basicConfig(filename='myapp.log', level=logging.DEBUG)
+logger = logging.getLogger(__name__)
+logger.setLevel(logging.DEBUG)  # Imposta il livello a DEBUG per il logger
+
 @user_passes_test(lambda u: not u.is_superuser, login_url='home_amministratore')
 @login_required(login_url='login')
 def home(request):
-    
     animali = Animale.objects.all() 
 
     myFilter = AnimalFilter(request.GET, queryset=animali)
@@ -21,6 +28,17 @@ def home(request):
     context = {'animali': animali, 'myFilter': myFilter}
     return render(request, "home.html", context)
 
+
+
+@user_passes_test(lambda u: u.is_superuser, login_url='home')
+def home_amministratore(request):
+    richieste = RichiestaAdozione.objects.all()
+
+    myFilter = RichesteFilter(request.GET, queryset=richieste)
+    richieste = myFilter.qs
+
+    context = {'richieste':richieste, 'myFilter': myFilter}
+    return render(request,'home_amministratore.html',context)
 
 def lista_animaliAmministratore(request):
     animali = Animale.objects.all() 
@@ -31,19 +49,6 @@ def lista_animaliAmministratore(request):
     context = {'animali': animali, 'myFilter': myFilter}
     return render(request, "lista_animaliAmministratore.html", context)
 
-
-
-@user_passes_test(lambda u: u.is_superuser, login_url='home')
-def homeAmministratore(request):
-    richieste = RichiestaAdozione.objects.all()
-
-    myFilter = RichesteFilter(request.GET, queryset=richieste)
-    richieste = myFilter.qs
-
-    context = {'richieste':richieste, 'myFilter': myFilter}
-    return render(request,'home_amministratore.html',context)
-
-
 #invio della richiesta di adozione prendendo l'id dell'animale selezionato e lo user loggato al momento dell'invio della richiesta
 def adotta(request, animale_id):
     animale = Animale.objects.get(pk=animale_id)
@@ -51,22 +56,23 @@ def adotta(request, animale_id):
     if request.method == 'POST':
         form_data = request.POST.copy()
         form_data['animale'] = animale.ID_animale  
-        form_data['user'] = request.user 
+        form_data['utente'] = request.user 
         form = RichiestaAdozioneForm(form_data)
         if form.is_valid():
             richiesta_adozione = form.save(commit=False)
             richiesta_adozione.animale = animale
             richiesta_adozione.utente = request.user
             richiesta_adozione.save()        
-
-            #Se la richiesta viene accettata, tolgo l'animale per cui viene effettuata la richiesta
-            #dalla lista animali
+            logger.debug("Richiesta di adozione creata con successo")          
             if request.POST.get('azione') == 'accetta':
                 animale.delete()
 
             return render(request, 'successoRegistrazione.html')
+        else:
+            logger.debug("Form non valido")
     else:
         form = RichiestaAdozioneForm(initial={'animale': animale_id, 'utente': request.user})
+    
     context = {'animale': animale, 'form': form}
     return render(request, 'adotta.html', context)
 
