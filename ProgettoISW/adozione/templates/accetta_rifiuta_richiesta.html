@@ -6,7 +6,7 @@
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title>Successo</title>
+        <title>Risposta</title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" type="text/css" href="{% static 'styles.css' %}">
@@ -14,11 +14,16 @@
     <body>
 
         <div class="navbar">
-            <a class="button_link" href="{% url 'home' %}">
+            <a class="button_link" href="{% url 'home_amministratore' %}">
                 <button class="pulsante" >Home</button>
             </a>
         </div>
-    <h1>Richiesta di adozione inviata!</h1>
+
+    {% if is_accepted %}
+        <h1>Richiesta di adozione accettata!</h1>
+    {% else %}
+        <h1>Richiesta di adozione rifiutata!</h1>
+    {% endif %}
 
         
     </body>

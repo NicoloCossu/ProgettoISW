@@ -68,7 +68,7 @@ def adotta(request, animale_id):
             if request.POST.get('azione') == 'accetta':
                 animale.delete()
 
-            return render(request, 'successoRegistrazione.html')
+            return render(request, 'successoRichiestaAdozione.html')
         else:
             logger.debug("Form non valido")
     else:
@@ -129,7 +129,7 @@ def registerPage(request):
     return render(request, 'register.html', context)
 
 def accetta_rifiuta_view(request, richiesta_id, risultato):
-        azione = risultato.lower() == 'true'
+        azione = risultato.lower()
         richiesta = RichiestaAdozione.objects.get(pk=richiesta_id)
         ID_animale = int(richiesta.animale.ID_animale)
         animale = Animale.objects.get(pk=ID_animale)
@@ -142,10 +142,10 @@ def accetta_rifiuta_view(request, richiesta_id, risultato):
             # Elimina l'animale
 
             animale.delete()
-            render(request, 'successoRegistrazione.html')  # Reindirizza a una pagina di successo
+            render(request, 'accetta_rifiuta_richiesta.html', {risultato:risultato})  # Reindirizza a una pagina di successo
         else:
             # Esegui l'azione di rifiuto (ad esempio, cambia lo stato della richiesta)
             richiesta.delete()
-            render(request, 'successoRegistrazione.html')  # Reindirizza a una pagina di successo
-        return render(request, 'successoRegistrazione.html')  # Reindirizza a una pagina di successo
+            render(request, 'accetta_rifiuta_richiesta.html', {risultato:risultato})  # Reindirizza a una pagina di successo
+        return render(request, 'accetta_rifiuta_richiesta.html', {risultato:risultato})  # Reindirizza a una pagina di successo
 
