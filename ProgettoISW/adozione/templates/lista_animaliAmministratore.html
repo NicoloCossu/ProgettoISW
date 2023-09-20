@@ -14,9 +14,15 @@
     <body>
 
         <div class="navbar">
+
+            <a class="button_link" href="{% url 'aggiungiAnimale' %}">
+                <button class="pulsante" >Aggiungi animale</button>
+            </a>
+
             <a class="button_link" href="{% url 'logout' %}">
                 <button class="pulsante" >Logout</button>
             </a>
+          
         </div>
 
         <form id= "form_ricerca" method="get">
