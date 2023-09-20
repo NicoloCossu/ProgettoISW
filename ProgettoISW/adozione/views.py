@@ -5,7 +5,7 @@ from django.urls import reverse_lazy
 from django.contrib.auth.views import LoginView
 from django.contrib.auth.models import User  # Assicurati di importare il modello User
 from .models import Animale, RichiestaAdozione
-from .forms import RichiestaAdozioneForm, ModificaAnimaleForm
+from .forms import RichiestaAdozioneForm, ModificaAnimaleForm, AggiungiAnimaleForm
 from .filters import AnimalFilter, RichesteFilter
 from django.contrib.auth.decorators import user_passes_test, login_required
 
@@ -70,6 +70,22 @@ def adotta(request, animale_id):
     context = {'animale': animale, 'form': form}
     return render(request, 'adotta.html', context)
 
+#view per aggiungere un nuovo animale alla lista
+def aggiungiAnimale(request):
+    form = AggiungiAnimaleForm()
+
+    if request.method == 'POST':
+        form = AggiungiAnimaleForm(request.POST)
+        if form.is_valid():
+            form.save()
+            #Reindirizzo alla pagina lista_animaliAmministratore dopo aver aggiunto l'animale
+            return redirect('lista_animaliAmministratore')
+        
+        else:
+            form = AggiungiAnimaleForm()
+    
+    return render(request, 'aggiungi_animale.html', {'form': form})
+
 #View per modificare gli animali (dalla pagina lista_AnimaliAmministratore)
 def modifica_animale(request, animale_id):
     animale = Animale.objects.get(pk=animale_id)
@@ -83,7 +99,6 @@ def modifica_animale(request, animale_id):
             return redirect('lista_animaliAmministratore')
 
     return render(request, 'modificaAnimale.html', {'form': form})
-
 
 
 def logout_view(request):

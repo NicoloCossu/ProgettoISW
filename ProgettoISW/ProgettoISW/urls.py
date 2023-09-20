@@ -29,5 +29,6 @@ urlpatterns = [
     path('logout/', views.logout_view, name='logout'),
     path('adotta/<int:animale_id>/', views.adotta, name='adotta'),
     path('modifica_animale/<int:animale_id>/', views.modifica_animale, name='modifica_animale'),
-    path('accetta_rifiuta_view/<int:richiesta_id>/<str:risultato>/', views.accetta_rifiuta_view, name='accetta_rifiuta_view')
+    path('accetta_rifiuta_view/<int:richiesta_id>/<str:risultato>/', views.accetta_rifiuta_view, name='accetta_rifiuta_view'),
+    path('aggiungiAnimale/', views.aggiungiAnimale, name = 'aggiungiAnimale')
 ]

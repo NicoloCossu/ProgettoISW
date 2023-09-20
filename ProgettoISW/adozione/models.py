@@ -3,7 +3,7 @@ from django.contrib.auth.models import User
 
 # Create your models here.
 class Animale(models.Model):
-    ID_animale = models.IntegerField(default=1, primary_key=True)
+    ID_animale = models.AutoField(primary_key=True)
     specie = models.CharField(max_length=100)
     razza = models.CharField(max_length=50)
     età = models.IntegerField(default=0)
