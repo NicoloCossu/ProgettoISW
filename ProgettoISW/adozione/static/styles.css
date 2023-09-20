@@ -9,21 +9,6 @@
     justify-content: space-around;
 }
 
-.dropdown{
-    background-color: rgb(119, 211, 213);
-    border-color: #fff;
-    border-width: 3px;
-    width: 150px;
-    margin-right: 30%;
-    margin-top: 10%;
-    font-size: 25px;
-    box-shadow: 5px 5px rgb(146, 5, 94); 
-    border-radius: 3px;
-    border-style: outset;
-}
-
-.dropdown:hover {background-color: #00ddff;}
-
 .button_link{
     width: 150px;
     margin-top: 50px;
@@ -54,7 +39,7 @@ a, a:hover, a:focus, a:active {
 
 .pulsante_tabella:hover{
     background: #e3e3e3;
-    font-weight: bold;
+    text-decoration: underline;
 }
  
 table{
@@ -127,6 +112,23 @@ form button[type="submit"], input{
 
 form button:hover, input:hover {background-color: #00ddff;}
 
+
+.modifica_form  input#id_specie,
+.modifica_form  input#id_razza, 
+.modifica_form  input#id_descrizione{
+    width: 390px;    
+    padding-left: 5;
+    padding-right: 0;
+}
+
+.aggiunta_form  input#id_specie,
+.aggiunta_form  input#id_razza, 
+.aggiunta_form  input#id_descrizione{
+    width: 390px;    
+    padding-left: 5;
+    padding-right: 0;
+}
+
 p{
     background-color: #fff;
     padding-bottom: 5px;
@@ -151,6 +153,18 @@ p{
     width: 150px;
 }
 
+#form_ricerca #id_nomeCognome, 
+#form_ricerca #id_indirizzo, 
+#form_ricerca #id_emailNumeroDiTelefono{
+    width: 745px;
+    padding-left: 5;
+    padding-right: 0;
+}
+
+#id_animale{
+    width: 753px;
+}
+
 #form_ricerca{
     width: 753px;
     max-width: none;
@@ -166,9 +180,29 @@ p{
 }
 
 
+select > option {
+
+    background-color: rgb(119, 211, 213);
+
+}
+
+
+
 @media only screen and (max-width: 900px){
     
     #form_ricerca{
+        width: 375px;
+    }
+
+    #form_ricerca #id_nomeCognome, 
+    #form_ricerca #id_indirizzo, 
+    #form_ricerca #id_emailNumeroDiTelefono{
+        width: 365px;    
+        padding-left: 5;
+        padding-right: 0;
+    }
+
+    #id_animale{
         width: 375px;
     }
 

@@ -6,7 +6,7 @@
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title>Home Page</title>
+        <title>Home Page Admin</title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" type="text/css" href="{% static 'styles.css' %}">
@@ -34,7 +34,6 @@
             <thead>
                 <th>Nome e cognome</th>
                 <th>Indirizzo</th>
-                <th>Lavoro</th>
                 <th>Specie Animale</th>
                 <th>Razza Animale</th>
                 <th>Età</th>
@@ -50,14 +49,12 @@
                     <td>-</td>
                     <td>-</td>
                     <td>-</td>
-                    <td>-</td>
                 </tr>
                 
                 {% for richiesta in richieste %}
                 <tr>
                     <td>{{ richiesta.nomeCognome }}</td>
                     <td>{{ richiesta.indirizzo }}</td>
-                    <td>Lavoro</td>
                     <td> {{richiesta.animale.specie}}</td>
                     <td> {{richiesta.animale.razza}}</td>
                     <td> {{richiesta.animale.età}}</td>

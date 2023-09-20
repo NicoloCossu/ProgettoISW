@@ -1,9 +1,33 @@
-<h1>
-    Aggiungi Animale
-</h1>
+{% load static %}
 
-<form method="post">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit">Aggiungi Animale</button>
-</form>
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>Aggiungi animale</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" type="text/css" href="{% static 'styles.css' %}">
+    </head>
+    <body>
+
+        <div class="navbar">
+            
+            <a class="button_link" href="{% url 'lista_animaliAmministratore' %}">
+                <button class="pulsante" >Indietro</button>
+            </a>
+
+        </div>
+
+
+        <form method="post" class="aggiunta_form">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit">Aggiungi Animale</button>
+        </form>
+
+        
+    </body>
+</html>
