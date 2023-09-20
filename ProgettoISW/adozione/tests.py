@@ -258,6 +258,7 @@ class LoginAdminTest(TestCase):
         time.sleep(3)
         self.browser.find_element('name','username').send_keys('Admin')
         self.browser.find_element('name','password').send_keys('Admin')
+        time.sleep(1)
         text = "Login"
         login_btn = self.browser.find_element(By.XPATH, f'//*[contains(text(), "{text}")]')
         login_btn.click()
@@ -269,6 +270,58 @@ class LoginAdminTest(TestCase):
         self.browser.get(self.live_server_url)
         time.sleep(3)
         self.browser.find_element('name','username').send_keys('Admin')
+        time.sleep(1)
+        self.browser.find_element('name','password').send_keys('wrong password')
+        time.sleep(1)
+        text = "Login"
+        login_btn = self.browser.find_element(By.XPATH, f'//*[contains(text(), "{text}")]')
+        login_btn.click()
+        time.sleep(3)
+        auxUrl = self.live_server_url + "/"
+        self.assertEquals(self.browser.current_url,auxUrl)
+        errorElem = self.browser.find_element(By.CLASS_NAME,"errorlist")
+        self.assertTrue(errorElem.is_displayed())
+
+
+####################################################################################
+# lato client
+# test ok
+class LoginUserTest(TestCase):
+    # L’utente deve inserire username e password scelti in fase 
+    # di registrazione per poter accedere al sistema. 
+    # Se la password o lo username non sono corretti viene 
+    # segnalato l’errore. Se i dati sono corretti l’utente 
+    # può vedere la lista di animali adottabili.
+    def setUp(self):
+        #drivers_dir = os.path.join(os.path.dirname(__file__),'drivers')
+        #chrome_driver_path = os.path.join(drivers_dir,'chromedriver')
+        self.browser = webdriver.Chrome()
+        self.live_server_url= "http://127.0.0.1:8000"
+        super(LoginUserTest, self).setUp()
+
+    def tearDown(self):
+        self.browser.quit()
+        super(LoginUserTest,self).tearDown()
+    
+    #da testare
+    def test_login_user_successo(self):
+        self.browser.get(self.live_server_url)
+        time.sleep(3)
+        self.browser.find_element('name','username').send_keys('Oingo')
+        self.browser.find_element('name','password').send_keys('Password_123')
+        time.sleep(1)
+        text = "Login"
+        login_btn = self.browser.find_element(By.XPATH, f'//*[contains(text(), "{text}")]')
+        login_btn.click()
+        time.sleep(3)
+        auxUrl = self.live_server_url + reverse('home')
+        self.assertEquals(self.browser.current_url,auxUrl)
+    
+    # da testare
+    def test_login_login_errore(self):
+        self.browser.get(self.live_server_url)
+        time.sleep(3)
+        self.browser.find_element('name','username').send_keys('Oingo')
         time.sleep(1)
         self.browser.find_element('name','password').send_keys('wrong password')
         time.sleep(1)
