@@ -454,3 +454,170 @@ DEBUG:selenium.webdriver.remote.remote_connection:DELETE http://localhost:61849/
 DEBUG:urllib3.connectionpool:http://localhost:61849 "DELETE /session/e2d6c9d45b43662819997b66cb83dbcf HTTP/1.1" 200 0
 DEBUG:selenium.webdriver.remote.remote_connection:Remote response: status=200 | data={"value":null} | headers=HTTPHeaderDict({'Content-Length': '14', 'Content-Type': 'application/json; charset=utf-8', 'cache-control': 'no-cache'})
 DEBUG:selenium.webdriver.remote.remote_connection:Finished Request
+DEBUG:adozione.views:homeAmmm
+DEBUG:adozione.views:homeAmmm
+DEBUG:selenium.webdriver.common.selenium_manager:Selenium Manager binary found at: C:\Users\Giulia\AppData\Local\Programs\Python\Python311\Lib\site-packages\selenium\webdriver\common\windows\selenium-manager.exe
+DEBUG:selenium.webdriver.common.selenium_manager:Executing process: C:\Users\Giulia\AppData\Local\Programs\Python\Python311\Lib\site-packages\selenium\webdriver\common\windows\selenium-manager.exe --browser chrome --debug --output json
+DEBUG:selenium.webdriver.common.selenium_manager:chromedriver not found in PATH
+DEBUG:selenium.webdriver.common.selenium_manager:chrome detected at C:\Program Files\Google\Chrome\Application\chrome.exe
+DEBUG:selenium.webdriver.common.selenium_manager:Running command: wmic datafile where name='C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe' get Version /value
+DEBUG:selenium.webdriver.common.selenium_manager:Output: "\r\r\n\r\r\nVersion=117.0.5938.89\r\r\n\r\r\n\r\r\n\r"
+DEBUG:selenium.webdriver.common.selenium_manager:Detected browser: chrome 117.0.5938.89
+DEBUG:selenium.webdriver.common.selenium_manager:Discovering versions from https://googlechromelabs.github.io/chrome-for-testing/known-good-versions-with-downloads.json
+DEBUG:selenium.webdriver.common.selenium_manager:Required driver: chromedriver 117.0.5938.88
+DEBUG:selenium.webdriver.common.selenium_manager:chromedriver 117.0.5938.88 already in the cache
+DEBUG:selenium.webdriver.common.selenium_manager:Driver path: C:\Users\Giulia\.cache\selenium\chromedriver\win64\117.0.5938.88\chromedriver.exe
+DEBUG:selenium.webdriver.common.selenium_manager:Browser path: C:\Program Files\Google\Chrome\Application\chrome.exe
+DEBUG:selenium.webdriver.common.selenium_manager:Using driver at: C:\Users\Giulia\.cache\selenium\chromedriver\win64\117.0.5938.88\chromedriver.exe
+DEBUG:selenium.webdriver.common.service:Started executable: `C:\Users\Giulia\.cache\selenium\chromedriver\win64\117.0.5938.88\chromedriver.exe` in a child process with pid: 3292
+DEBUG:selenium.webdriver.remote.remote_connection:POST http://localhost:63999/session {"capabilities": {"firstMatch": [{}], "alwaysMatch": {"browserName": "chrome", "pageLoadStrategy": "normal", "browserVersion": null, "goog:chromeOptions": {"extensions": [], "binary": "C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe", "args": []}}}}
+DEBUG:urllib3.connectionpool:Starting new HTTP connection (1): localhost:63999
+DEBUG:urllib3.connectionpool:http://localhost:63999 "POST /session HTTP/1.1" 200 0
+DEBUG:selenium.webdriver.remote.remote_connection:Remote response: status=200 | data={"value":{"capabilities":{"acceptInsecureCerts":false,"browserName":"chrome","browserVersion":"117.0.5938.89","chrome":{"chromedriverVersion":"117.0.5938.88 (be6afae4721209be42944bbcd325665f9f44563b-refs/branch-heads/5938_62@{#9})","userDataDir":"C:\\Users\\Giulia\\AppData\\Local\\Temp\\scoped_dir3292_272143631"},"fedcm:accounts":true,"goog:chromeOptions":{"debuggerAddress":"localhost:64005"},"networkConnectionEnabled":false,"pageLoadStrategy":"normal","platformName":"windows","proxy":{},"setWindowRect":true,"strictFileInteractability":false,"timeouts":{"implicit":0,"pageLoad":300000,"script":30000},"unhandledPromptBehavior":"dismiss and notify","webauthn:extension:credBlob":true,"webauthn:extension:largeBlob":true,"webauthn:extension:minPinLength":true,"webauthn:extension:prf":true,"webauthn:virtualAuthenticators":true},"sessionId":"4b0970af033955da829fd28ff5484103"}} | headers=HTTPHeaderDict({'Content-Length': '881', 'Content-Type': 'application/json; charset=utf-8', 'cache-control': 'no-cache'})
+DEBUG:selenium.webdriver.remote.remote_connection:Finished Request
+DEBUG:selenium.webdriver.remote.remote_connection:POST http://localhost:63999/session/4b0970af033955da829fd28ff5484103/url {"url": "http://127.0.0.1:8000"}
+DEBUG:urllib3.connectionpool:http://localhost:63999 "POST /session/4b0970af033955da829fd28ff5484103/url HTTP/1.1" 200 0
+DEBUG:selenium.webdriver.remote.remote_connection:Remote response: status=200 | data={"value":null} | headers=HTTPHeaderDict({'Content-Length': '14', 'Content-Type': 'application/json; charset=utf-8', 'cache-control': 'no-cache'})
+DEBUG:selenium.webdriver.remote.remote_connection:Finished Request
+WARNING:django.request:Not Found: /favicon.ico
+DEBUG:selenium.webdriver.remote.remote_connection:POST http://localhost:63999/session/4b0970af033955da829fd28ff5484103/element {"using": "css selector", "value": "[name=\"username\"]"}
+DEBUG:urllib3.connectionpool:http://localhost:63999 "POST /session/4b0970af033955da829fd28ff5484103/element HTTP/1.1" 200 0
+DEBUG:selenium.webdriver.remote.remote_connection:Remote response: status=200 | data={"value":{"element-6066-11e4-a52e-4f735466cecf":"92F3895392CBD3B4A9FC4BBE023DF01E_element_2"}} | headers=HTTPHeaderDict({'Content-Length': '94', 'Content-Type': 'application/json; charset=utf-8', 'cache-control': 'no-cache'})
+DEBUG:selenium.webdriver.remote.remote_connection:Finished Request
+DEBUG:selenium.webdriver.remote.remote_connection:POST http://localhost:63999/session/4b0970af033955da829fd28ff5484103/element/92F3895392CBD3B4A9FC4BBE023DF01E_element_2/value {"text": "Admin", "value": ["A", "d", "m", "i", "n"], "id": "92F3895392CBD3B4A9FC4BBE023DF01E_element_2"}
+DEBUG:urllib3.connectionpool:http://localhost:63999 "POST /session/4b0970af033955da829fd28ff5484103/element/92F3895392CBD3B4A9FC4BBE023DF01E_element_2/value HTTP/1.1" 200 0
+DEBUG:selenium.webdriver.remote.remote_connection:Remote response: status=200 | data={"value":null} | headers=HTTPHeaderDict({'Content-Length': '14', 'Content-Type': 'application/json; charset=utf-8', 'cache-control': 'no-cache'})
+DEBUG:selenium.webdriver.remote.remote_connection:Finished Request
+DEBUG:selenium.webdriver.remote.remote_connection:POST http://localhost:63999/session/4b0970af033955da829fd28ff5484103/element {"using": "css selector", "value": "[name=\"password\"]"}
+DEBUG:urllib3.connectionpool:http://localhost:63999 "POST /session/4b0970af033955da829fd28ff5484103/element HTTP/1.1" 200 0
+DEBUG:selenium.webdriver.remote.remote_connection:Remote response: status=200 | data={"value":{"element-6066-11e4-a52e-4f735466cecf":"92F3895392CBD3B4A9FC4BBE023DF01E_element_6"}} | headers=HTTPHeaderDict({'Content-Length': '94', 'Content-Type': 'application/json; charset=utf-8', 'cache-control': 'no-cache'})
+DEBUG:selenium.webdriver.remote.remote_connection:Finished Request
+DEBUG:selenium.webdriver.remote.remote_connection:POST http://localhost:63999/session/4b0970af033955da829fd28ff5484103/element/92F3895392CBD3B4A9FC4BBE023DF01E_element_6/value {"text": "Admin", "value": ["A", "d", "m", "i", "n"], "id": "92F3895392CBD3B4A9FC4BBE023DF01E_element_6"}
+DEBUG:urllib3.connectionpool:http://localhost:63999 "POST /session/4b0970af033955da829fd28ff5484103/element/92F3895392CBD3B4A9FC4BBE023DF01E_element_6/value HTTP/1.1" 200 0
+DEBUG:selenium.webdriver.remote.remote_connection:Remote response: status=200 | data={"value":null} | headers=HTTPHeaderDict({'Content-Length': '14', 'Content-Type': 'application/json; charset=utf-8', 'cache-control': 'no-cache'})
+DEBUG:selenium.webdriver.remote.remote_connection:Finished Request
+DEBUG:selenium.webdriver.remote.remote_connection:POST http://localhost:63999/session/4b0970af033955da829fd28ff5484103/element {"using": "xpath", "value": "//*[contains(text(), \"Login\")]"}
+DEBUG:urllib3.connectionpool:http://localhost:63999 "POST /session/4b0970af033955da829fd28ff5484103/element HTTP/1.1" 200 0
+DEBUG:selenium.webdriver.remote.remote_connection:Remote response: status=200 | data={"value":{"element-6066-11e4-a52e-4f735466cecf":"92F3895392CBD3B4A9FC4BBE023DF01E_element_3"}} | headers=HTTPHeaderDict({'Content-Length': '94', 'Content-Type': 'application/json; charset=utf-8', 'cache-control': 'no-cache'})
+DEBUG:selenium.webdriver.remote.remote_connection:Finished Request
+DEBUG:selenium.webdriver.remote.remote_connection:POST http://localhost:63999/session/4b0970af033955da829fd28ff5484103/element/92F3895392CBD3B4A9FC4BBE023DF01E_element_3/click {"id": "92F3895392CBD3B4A9FC4BBE023DF01E_element_3"}
+DEBUG:adozione.views:homeAmmm
+DEBUG:urllib3.connectionpool:http://localhost:63999 "POST /session/4b0970af033955da829fd28ff5484103/element/92F3895392CBD3B4A9FC4BBE023DF01E_element_3/click HTTP/1.1" 200 0
+DEBUG:selenium.webdriver.remote.remote_connection:Remote response: status=200 | data={"value":null} | headers=HTTPHeaderDict({'Content-Length': '14', 'Content-Type': 'application/json; charset=utf-8', 'cache-control': 'no-cache'})
+DEBUG:selenium.webdriver.remote.remote_connection:Finished Request
+DEBUG:selenium.webdriver.remote.remote_connection:POST http://localhost:63999/session/4b0970af033955da829fd28ff5484103/element {"using": "xpath", "value": "//*[contains(text(), \"Lista Animali\")]"}
+DEBUG:urllib3.connectionpool:http://localhost:63999 "POST /session/4b0970af033955da829fd28ff5484103/element HTTP/1.1" 200 0
+DEBUG:selenium.webdriver.remote.remote_connection:Remote response: status=200 | data={"value":{"element-6066-11e4-a52e-4f735466cecf":"E1594BCD05F5BFA2DA1AAE772641027E_element_9"}} | headers=HTTPHeaderDict({'Content-Length': '94', 'Content-Type': 'application/json; charset=utf-8', 'cache-control': 'no-cache'})
+DEBUG:selenium.webdriver.remote.remote_connection:Finished Request
+DEBUG:selenium.webdriver.remote.remote_connection:POST http://localhost:63999/session/4b0970af033955da829fd28ff5484103/element/E1594BCD05F5BFA2DA1AAE772641027E_element_9/click {"id": "E1594BCD05F5BFA2DA1AAE772641027E_element_9"}
+DEBUG:urllib3.connectionpool:http://localhost:63999 "POST /session/4b0970af033955da829fd28ff5484103/element/E1594BCD05F5BFA2DA1AAE772641027E_element_9/click HTTP/1.1" 200 0
+DEBUG:selenium.webdriver.remote.remote_connection:Remote response: status=200 | data={"value":null} | headers=HTTPHeaderDict({'Content-Length': '14', 'Content-Type': 'application/json; charset=utf-8', 'cache-control': 'no-cache'})
+DEBUG:selenium.webdriver.remote.remote_connection:Finished Request
+DEBUG:selenium.webdriver.remote.remote_connection:DELETE http://localhost:63999/session/4b0970af033955da829fd28ff5484103 {}
+DEBUG:urllib3.connectionpool:http://localhost:63999 "DELETE /session/4b0970af033955da829fd28ff5484103 HTTP/1.1" 200 0
+DEBUG:selenium.webdriver.remote.remote_connection:Remote response: status=200 | data={"value":null} | headers=HTTPHeaderDict({'Content-Length': '14', 'Content-Type': 'application/json; charset=utf-8', 'cache-control': 'no-cache'})
+DEBUG:selenium.webdriver.remote.remote_connection:Finished Request
+DEBUG:selenium.webdriver.common.selenium_manager:Selenium Manager binary found at: C:\Users\Giulia\AppData\Local\Programs\Python\Python311\Lib\site-packages\selenium\webdriver\common\windows\selenium-manager.exe
+DEBUG:selenium.webdriver.common.selenium_manager:Executing process: C:\Users\Giulia\AppData\Local\Programs\Python\Python311\Lib\site-packages\selenium\webdriver\common\windows\selenium-manager.exe --browser chrome --debug --output json
+DEBUG:selenium.webdriver.common.selenium_manager:chromedriver not found in PATH
+DEBUG:selenium.webdriver.common.selenium_manager:chrome detected at C:\Program Files\Google\Chrome\Application\chrome.exe
+DEBUG:selenium.webdriver.common.selenium_manager:Running command: wmic datafile where name='C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe' get Version /value
+DEBUG:selenium.webdriver.common.selenium_manager:Output: "\r\r\n\r\r\nVersion=117.0.5938.89\r\r\n\r\r\n\r\r\n\r"
+DEBUG:selenium.webdriver.common.selenium_manager:Detected browser: chrome 117.0.5938.89
+DEBUG:selenium.webdriver.common.selenium_manager:Required driver: chromedriver 117.0.5938.88
+DEBUG:selenium.webdriver.common.selenium_manager:chromedriver 117.0.5938.88 already in the cache
+DEBUG:selenium.webdriver.common.selenium_manager:Driver path: C:\Users\Giulia\.cache\selenium\chromedriver\win64\117.0.5938.88\chromedriver.exe
+DEBUG:selenium.webdriver.common.selenium_manager:Browser path: C:\Program Files\Google\Chrome\Application\chrome.exe
+DEBUG:selenium.webdriver.common.selenium_manager:Using driver at: C:\Users\Giulia\.cache\selenium\chromedriver\win64\117.0.5938.88\chromedriver.exe
+DEBUG:selenium.webdriver.common.service:Started executable: `C:\Users\Giulia\.cache\selenium\chromedriver\win64\117.0.5938.88\chromedriver.exe` in a child process with pid: 5964
+DEBUG:selenium.webdriver.remote.remote_connection:POST http://localhost:64216/session {"capabilities": {"firstMatch": [{}], "alwaysMatch": {"browserName": "chrome", "pageLoadStrategy": "normal", "browserVersion": null, "goog:chromeOptions": {"extensions": [], "binary": "C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe", "args": []}}}}
+DEBUG:urllib3.connectionpool:Starting new HTTP connection (1): localhost:64216
+DEBUG:urllib3.connectionpool:http://localhost:64216 "POST /session HTTP/1.1" 200 0
+DEBUG:selenium.webdriver.remote.remote_connection:Remote response: status=200 | data={"value":{"capabilities":{"acceptInsecureCerts":false,"browserName":"chrome","browserVersion":"117.0.5938.89","chrome":{"chromedriverVersion":"117.0.5938.88 (be6afae4721209be42944bbcd325665f9f44563b-refs/branch-heads/5938_62@{#9})","userDataDir":"C:\\Users\\Giulia\\AppData\\Local\\Temp\\scoped_dir5964_764867795"},"fedcm:accounts":true,"goog:chromeOptions":{"debuggerAddress":"localhost:64219"},"networkConnectionEnabled":false,"pageLoadStrategy":"normal","platformName":"windows","proxy":{},"setWindowRect":true,"strictFileInteractability":false,"timeouts":{"implicit":0,"pageLoad":300000,"script":30000},"unhandledPromptBehavior":"dismiss and notify","webauthn:extension:credBlob":true,"webauthn:extension:largeBlob":true,"webauthn:extension:minPinLength":true,"webauthn:extension:prf":true,"webauthn:virtualAuthenticators":true},"sessionId":"a7a3a5cf92dac945394e2808a5326e5c"}} | headers=HTTPHeaderDict({'Content-Length': '881', 'Content-Type': 'application/json; charset=utf-8', 'cache-control': 'no-cache'})
+DEBUG:selenium.webdriver.remote.remote_connection:Finished Request
+DEBUG:selenium.webdriver.remote.remote_connection:POST http://localhost:64216/session/a7a3a5cf92dac945394e2808a5326e5c/url {"url": "http://127.0.0.1:8000"}
+DEBUG:urllib3.connectionpool:http://localhost:64216 "POST /session/a7a3a5cf92dac945394e2808a5326e5c/url HTTP/1.1" 200 0
+DEBUG:selenium.webdriver.remote.remote_connection:Remote response: status=200 | data={"value":null} | headers=HTTPHeaderDict({'Content-Length': '14', 'Content-Type': 'application/json; charset=utf-8', 'cache-control': 'no-cache'})
+DEBUG:selenium.webdriver.remote.remote_connection:Finished Request
+WARNING:django.request:Not Found: /favicon.ico
+DEBUG:selenium.webdriver.remote.remote_connection:POST http://localhost:64216/session/a7a3a5cf92dac945394e2808a5326e5c/element {"using": "css selector", "value": "[name=\"username\"]"}
+DEBUG:urllib3.connectionpool:http://localhost:64216 "POST /session/a7a3a5cf92dac945394e2808a5326e5c/element HTTP/1.1" 200 0
+DEBUG:selenium.webdriver.remote.remote_connection:Remote response: status=200 | data={"value":{"element-6066-11e4-a52e-4f735466cecf":"57DA9E3856BE8AB5C4072C7D00716D9B_element_2"}} | headers=HTTPHeaderDict({'Content-Length': '94', 'Content-Type': 'application/json; charset=utf-8', 'cache-control': 'no-cache'})
+DEBUG:selenium.webdriver.remote.remote_connection:Finished Request
+DEBUG:selenium.webdriver.remote.remote_connection:POST http://localhost:64216/session/a7a3a5cf92dac945394e2808a5326e5c/element/57DA9E3856BE8AB5C4072C7D00716D9B_element_2/value {"text": "Admin", "value": ["A", "d", "m", "i", "n"], "id": "57DA9E3856BE8AB5C4072C7D00716D9B_element_2"}
+DEBUG:urllib3.connectionpool:http://localhost:64216 "POST /session/a7a3a5cf92dac945394e2808a5326e5c/element/57DA9E3856BE8AB5C4072C7D00716D9B_element_2/value HTTP/1.1" 200 0
+DEBUG:selenium.webdriver.remote.remote_connection:Remote response: status=200 | data={"value":null} | headers=HTTPHeaderDict({'Content-Length': '14', 'Content-Type': 'application/json; charset=utf-8', 'cache-control': 'no-cache'})
+DEBUG:selenium.webdriver.remote.remote_connection:Finished Request
+DEBUG:selenium.webdriver.remote.remote_connection:POST http://localhost:64216/session/a7a3a5cf92dac945394e2808a5326e5c/element {"using": "css selector", "value": "[name=\"password\"]"}
+DEBUG:urllib3.connectionpool:http://localhost:64216 "POST /session/a7a3a5cf92dac945394e2808a5326e5c/element HTTP/1.1" 200 0
+DEBUG:selenium.webdriver.remote.remote_connection:Remote response: status=200 | data={"value":{"element-6066-11e4-a52e-4f735466cecf":"57DA9E3856BE8AB5C4072C7D00716D9B_element_6"}} | headers=HTTPHeaderDict({'Content-Length': '94', 'Content-Type': 'application/json; charset=utf-8', 'cache-control': 'no-cache'})
+DEBUG:selenium.webdriver.remote.remote_connection:Finished Request
+DEBUG:selenium.webdriver.remote.remote_connection:POST http://localhost:64216/session/a7a3a5cf92dac945394e2808a5326e5c/element/57DA9E3856BE8AB5C4072C7D00716D9B_element_6/value {"text": "Admin", "value": ["A", "d", "m", "i", "n"], "id": "57DA9E3856BE8AB5C4072C7D00716D9B_element_6"}
+DEBUG:urllib3.connectionpool:http://localhost:64216 "POST /session/a7a3a5cf92dac945394e2808a5326e5c/element/57DA9E3856BE8AB5C4072C7D00716D9B_element_6/value HTTP/1.1" 200 0
+DEBUG:selenium.webdriver.remote.remote_connection:Remote response: status=200 | data={"value":null} | headers=HTTPHeaderDict({'Content-Length': '14', 'Content-Type': 'application/json; charset=utf-8', 'cache-control': 'no-cache'})
+DEBUG:selenium.webdriver.remote.remote_connection:Finished Request
+DEBUG:selenium.webdriver.remote.remote_connection:POST http://localhost:64216/session/a7a3a5cf92dac945394e2808a5326e5c/element {"using": "xpath", "value": "//*[contains(text(), \"Login\")]"}
+DEBUG:urllib3.connectionpool:http://localhost:64216 "POST /session/a7a3a5cf92dac945394e2808a5326e5c/element HTTP/1.1" 200 0
+DEBUG:selenium.webdriver.remote.remote_connection:Remote response: status=200 | data={"value":{"element-6066-11e4-a52e-4f735466cecf":"57DA9E3856BE8AB5C4072C7D00716D9B_element_3"}} | headers=HTTPHeaderDict({'Content-Length': '94', 'Content-Type': 'application/json; charset=utf-8', 'cache-control': 'no-cache'})
+DEBUG:selenium.webdriver.remote.remote_connection:Finished Request
+DEBUG:selenium.webdriver.remote.remote_connection:POST http://localhost:64216/session/a7a3a5cf92dac945394e2808a5326e5c/element/57DA9E3856BE8AB5C4072C7D00716D9B_element_3/click {"id": "57DA9E3856BE8AB5C4072C7D00716D9B_element_3"}
+DEBUG:adozione.views:homeAmmm
+DEBUG:urllib3.connectionpool:http://localhost:64216 "POST /session/a7a3a5cf92dac945394e2808a5326e5c/element/57DA9E3856BE8AB5C4072C7D00716D9B_element_3/click HTTP/1.1" 200 0
+DEBUG:selenium.webdriver.remote.remote_connection:Remote response: status=200 | data={"value":null} | headers=HTTPHeaderDict({'Content-Length': '14', 'Content-Type': 'application/json; charset=utf-8', 'cache-control': 'no-cache'})
+DEBUG:selenium.webdriver.remote.remote_connection:Finished Request
+DEBUG:selenium.webdriver.remote.remote_connection:POST http://localhost:64216/session/a7a3a5cf92dac945394e2808a5326e5c/element {"using": "xpath", "value": "//*[contains(text(), \"Lista Animali\")]"}
+DEBUG:urllib3.connectionpool:http://localhost:64216 "POST /session/a7a3a5cf92dac945394e2808a5326e5c/element HTTP/1.1" 200 0
+DEBUG:selenium.webdriver.remote.remote_connection:Remote response: status=200 | data={"value":{"element-6066-11e4-a52e-4f735466cecf":"965EF9EF7B08F9D1C4A49EA8BC6D6192_element_9"}} | headers=HTTPHeaderDict({'Content-Length': '94', 'Content-Type': 'application/json; charset=utf-8', 'cache-control': 'no-cache'})
+DEBUG:selenium.webdriver.remote.remote_connection:Finished Request
+DEBUG:selenium.webdriver.remote.remote_connection:POST http://localhost:64216/session/a7a3a5cf92dac945394e2808a5326e5c/element/965EF9EF7B08F9D1C4A49EA8BC6D6192_element_9/click {"id": "965EF9EF7B08F9D1C4A49EA8BC6D6192_element_9"}
+DEBUG:urllib3.connectionpool:http://localhost:64216 "POST /session/a7a3a5cf92dac945394e2808a5326e5c/element/965EF9EF7B08F9D1C4A49EA8BC6D6192_element_9/click HTTP/1.1" 200 0
+DEBUG:selenium.webdriver.remote.remote_connection:Remote response: status=200 | data={"value":null} | headers=HTTPHeaderDict({'Content-Length': '14', 'Content-Type': 'application/json; charset=utf-8', 'cache-control': 'no-cache'})
+DEBUG:selenium.webdriver.remote.remote_connection:Finished Request
+DEBUG:selenium.webdriver.remote.remote_connection:POST http://localhost:64216/session/a7a3a5cf92dac945394e2808a5326e5c/element {"using": "xpath", "value": "//tbody//tr[1]"}
+DEBUG:urllib3.connectionpool:http://localhost:64216 "POST /session/a7a3a5cf92dac945394e2808a5326e5c/element HTTP/1.1" 200 0
+DEBUG:selenium.webdriver.remote.remote_connection:Remote response: status=200 | data={"value":{"element-6066-11e4-a52e-4f735466cecf":"6C5897CD11286A8DAEB66B9B33F53510_element_38"}} | headers=HTTPHeaderDict({'Content-Length': '95', 'Content-Type': 'application/json; charset=utf-8', 'cache-control': 'no-cache'})
+DEBUG:selenium.webdriver.remote.remote_connection:Finished Request
+DEBUG:selenium.webdriver.remote.remote_connection:POST http://localhost:64216/session/a7a3a5cf92dac945394e2808a5326e5c/element/6C5897CD11286A8DAEB66B9B33F53510_element_38/element {"using": "xpath", "value": "//td[1]", "id": "6C5897CD11286A8DAEB66B9B33F53510_element_38"}
+DEBUG:urllib3.connectionpool:http://localhost:64216 "POST /session/a7a3a5cf92dac945394e2808a5326e5c/element/6C5897CD11286A8DAEB66B9B33F53510_element_38/element HTTP/1.1" 200 0
+DEBUG:selenium.webdriver.remote.remote_connection:Remote response: status=200 | data={"value":{"element-6066-11e4-a52e-4f735466cecf":"6C5897CD11286A8DAEB66B9B33F53510_element_39"}} | headers=HTTPHeaderDict({'Content-Length': '95', 'Content-Type': 'application/json; charset=utf-8', 'cache-control': 'no-cache'})
+DEBUG:selenium.webdriver.remote.remote_connection:Finished Request
+DEBUG:selenium.webdriver.remote.remote_connection:GET http://localhost:64216/session/a7a3a5cf92dac945394e2808a5326e5c/element/6C5897CD11286A8DAEB66B9B33F53510_element_39/text {"id": "6C5897CD11286A8DAEB66B9B33F53510_element_39"}
+DEBUG:urllib3.connectionpool:http://localhost:64216 "GET /session/a7a3a5cf92dac945394e2808a5326e5c/element/6C5897CD11286A8DAEB66B9B33F53510_element_39/text HTTP/1.1" 200 0
+DEBUG:selenium.webdriver.remote.remote_connection:Remote response: status=200 | data={"value":"Cane"} | headers=HTTPHeaderDict({'Content-Length': '16', 'Content-Type': 'application/json; charset=utf-8', 'cache-control': 'no-cache'})
+DEBUG:selenium.webdriver.remote.remote_connection:Finished Request
+DEBUG:selenium.webdriver.remote.remote_connection:POST http://localhost:64216/session/a7a3a5cf92dac945394e2808a5326e5c/element/6C5897CD11286A8DAEB66B9B33F53510_element_38/element {"using": "xpath", "value": "//td[2]", "id": "6C5897CD11286A8DAEB66B9B33F53510_element_38"}
+DEBUG:urllib3.connectionpool:http://localhost:64216 "POST /session/a7a3a5cf92dac945394e2808a5326e5c/element/6C5897CD11286A8DAEB66B9B33F53510_element_38/element HTTP/1.1" 200 0
+DEBUG:selenium.webdriver.remote.remote_connection:Remote response: status=200 | data={"value":{"element-6066-11e4-a52e-4f735466cecf":"6C5897CD11286A8DAEB66B9B33F53510_element_18"}} | headers=HTTPHeaderDict({'Content-Length': '95', 'Content-Type': 'application/json; charset=utf-8', 'cache-control': 'no-cache'})
+DEBUG:selenium.webdriver.remote.remote_connection:Finished Request
+DEBUG:selenium.webdriver.remote.remote_connection:GET http://localhost:64216/session/a7a3a5cf92dac945394e2808a5326e5c/element/6C5897CD11286A8DAEB66B9B33F53510_element_18/text {"id": "6C5897CD11286A8DAEB66B9B33F53510_element_18"}
+DEBUG:urllib3.connectionpool:http://localhost:64216 "GET /session/a7a3a5cf92dac945394e2808a5326e5c/element/6C5897CD11286A8DAEB66B9B33F53510_element_18/text HTTP/1.1" 200 0
+DEBUG:selenium.webdriver.remote.remote_connection:Remote response: status=200 | data={"value":"Bassotto"} | headers=HTTPHeaderDict({'Content-Length': '20', 'Content-Type': 'application/json; charset=utf-8', 'cache-control': 'no-cache'})
+DEBUG:selenium.webdriver.remote.remote_connection:Finished Request
+DEBUG:selenium.webdriver.remote.remote_connection:POST http://localhost:64216/session/a7a3a5cf92dac945394e2808a5326e5c/element/6C5897CD11286A8DAEB66B9B33F53510_element_38/element {"using": "xpath", "value": "//td[3]", "id": "6C5897CD11286A8DAEB66B9B33F53510_element_38"}
+DEBUG:urllib3.connectionpool:http://localhost:64216 "POST /session/a7a3a5cf92dac945394e2808a5326e5c/element/6C5897CD11286A8DAEB66B9B33F53510_element_38/element HTTP/1.1" 200 0
+DEBUG:selenium.webdriver.remote.remote_connection:Remote response: status=200 | data={"value":{"element-6066-11e4-a52e-4f735466cecf":"6C5897CD11286A8DAEB66B9B33F53510_element_19"}} | headers=HTTPHeaderDict({'Content-Length': '95', 'Content-Type': 'application/json; charset=utf-8', 'cache-control': 'no-cache'})
+DEBUG:selenium.webdriver.remote.remote_connection:Finished Request
+DEBUG:selenium.webdriver.remote.remote_connection:GET http://localhost:64216/session/a7a3a5cf92dac945394e2808a5326e5c/element/6C5897CD11286A8DAEB66B9B33F53510_element_19/text {"id": "6C5897CD11286A8DAEB66B9B33F53510_element_19"}
+DEBUG:urllib3.connectionpool:http://localhost:64216 "GET /session/a7a3a5cf92dac945394e2808a5326e5c/element/6C5897CD11286A8DAEB66B9B33F53510_element_19/text HTTP/1.1" 200 0
+DEBUG:selenium.webdriver.remote.remote_connection:Remote response: status=200 | data={"value":"3"} | headers=HTTPHeaderDict({'Content-Length': '13', 'Content-Type': 'application/json; charset=utf-8', 'cache-control': 'no-cache'})
+DEBUG:selenium.webdriver.remote.remote_connection:Finished Request
+DEBUG:selenium.webdriver.remote.remote_connection:POST http://localhost:64216/session/a7a3a5cf92dac945394e2808a5326e5c/element/6C5897CD11286A8DAEB66B9B33F53510_element_38/element {"using": "xpath", "value": "//td[4]", "id": "6C5897CD11286A8DAEB66B9B33F53510_element_38"}
+DEBUG:urllib3.connectionpool:http://localhost:64216 "POST /session/a7a3a5cf92dac945394e2808a5326e5c/element/6C5897CD11286A8DAEB66B9B33F53510_element_38/element HTTP/1.1" 200 0
+DEBUG:selenium.webdriver.remote.remote_connection:Remote response: status=200 | data={"value":{"element-6066-11e4-a52e-4f735466cecf":"6C5897CD11286A8DAEB66B9B33F53510_element_20"}} | headers=HTTPHeaderDict({'Content-Length': '95', 'Content-Type': 'application/json; charset=utf-8', 'cache-control': 'no-cache'})
+DEBUG:selenium.webdriver.remote.remote_connection:Finished Request
+DEBUG:selenium.webdriver.remote.remote_connection:GET http://localhost:64216/session/a7a3a5cf92dac945394e2808a5326e5c/element/6C5897CD11286A8DAEB66B9B33F53510_element_20/text {"id": "6C5897CD11286A8DAEB66B9B33F53510_element_20"}
+DEBUG:urllib3.connectionpool:http://localhost:64216 "GET /session/a7a3a5cf92dac945394e2808a5326e5c/element/6C5897CD11286A8DAEB66B9B33F53510_element_20/text HTTP/1.1" 200 0
+DEBUG:selenium.webdriver.remote.remote_connection:Remote response: status=200 | data={"value":"Basso"} | headers=HTTPHeaderDict({'Content-Length': '17', 'Content-Type': 'application/json; charset=utf-8', 'cache-control': 'no-cache'})
+DEBUG:selenium.webdriver.remote.remote_connection:Finished Request
+DEBUG:selenium.webdriver.remote.remote_connection:DELETE http://localhost:64216/session/a7a3a5cf92dac945394e2808a5326e5c {}
+DEBUG:urllib3.connectionpool:http://localhost:64216 "DELETE /session/a7a3a5cf92dac945394e2808a5326e5c HTTP/1.1" 200 0
+DEBUG:selenium.webdriver.remote.remote_connection:Remote response: status=200 | data={"value":null} | headers=HTTPHeaderDict({'Content-Length': '14', 'Content-Type': 'application/json; charset=utf-8', 'cache-control': 'no-cache'})
+DEBUG:selenium.webdriver.remote.remote_connection:Finished Request
+DEBUG:adozione.views:OK
+DEBUG:adozione.views:OK
+DEBUG:adozione.views:homeAmmm
+DEBUG:adozione.views:home
+DEBUG:adozione.views:home
+DEBUG:adozione.views:Richiesta di adozione creata con successo
+DEBUG:adozione.views:homeAmmm
+DEBUG:adozione.views:home

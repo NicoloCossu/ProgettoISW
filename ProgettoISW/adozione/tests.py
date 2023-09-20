@@ -81,7 +81,6 @@ class AnimaleTestCase(TestCase):
             #il test deve passare perche la razza ha più di 50 caratteri
             self.assertFalse(Animale.objects.filter(età = 22).exists())
 
-
 class AdottaViewTestCase(TestCase):
     def setUp(self):
         # Crea un utente di esempio e un animale di esempio
@@ -110,8 +109,6 @@ class AdottaViewTestCase(TestCase):
 
         # Verifica che il template di successo sia stato utilizzato
         self.assertTemplateUsed(response, 'successoRegistrazione.html')
-
-
 
 class AnimalFilterTest(TestCase):
     def test_animal_filter(self):
@@ -154,8 +151,6 @@ class AnimalFilterTest(TestCase):
         self.assertIn(animal1, filtered_animals_descrizione)
         self.assertNotIn(animal3, filtered_animals_descrizione)
         self.assertNotIn(animal2, filtered_animals_descrizione)
-
-
 
 class RichiestaFilterTest(TestCase):
     def test_richiesta_filter(self):
@@ -237,8 +232,7 @@ class RegistrationTest(TestCase):
         self.assertFalse(User.objects.filter(username='NewUser').exists())
 
 ####################################################################################
-#test di accettazione
-# lato admin
+# test di accettazione lato admin
 # test ok
 class LoginAdminTest(TestCase):
     def setUp(self):
@@ -282,9 +276,318 @@ class LoginAdminTest(TestCase):
         errorElem = self.browser.find_element(By.CLASS_NAME,"errorlist")
         self.assertTrue(errorElem.is_displayed())
 
+# da testare
+class HomeAdminTest(TestCase):
+    #L’amministratore visualizza la lista delle richieste di 
+    # adozione con i dati relativi all’utente che ha fatto la richiesta e 
+    # all’animale scelto. L’amministratore premendo i tasti rifiuta o accetta 
+    # decide l’esito della richiesta di adozione, la richiesta relativa viene 
+    # cancellata dalla lista
+    def setUp(self):
+        self.browser = webdriver.Chrome()
+        self.live_server_url= "http://127.0.0.1:8000"
+        super(HomeAdminTest, self).setUp()
+        
+    def tearDown(self):
+        self.browser.quit()
+        super(HomeAdminTest,self).tearDown()
+    
+    
+    def login(self):
+        self.browser.get(self.live_server_url)
+        time.sleep(3)
+        self.browser.find_element('name','username').send_keys('Admin')
+        self.browser.find_element('name','password').send_keys('Admin')
+        time.sleep(1)
+        text = "Login"
+        login_btn = self.browser.find_element(By.XPATH, f'//*[contains(text(), "{text}")]')
+        login_btn.click()
+        time.sleep(3)
+    # da testare
+    def test_accetta_richiesta_adozione(self):
+        self.login()
+        time.sleep(4)
+        # sono nella pagina home amministratore
+        text_to_find = "Accetta"
+        first_tr = self.browser.find_element(By.XPATH,"//tbody//tr[1]")
+        id_elemento= first_tr.get_attribute("id")
+        accetta_btn = self.browser.find_element(By.XPATH, f'//*[contains(text(), "{text_to_find}")]')
+        accetta_btn.click()
+        time.sleep(3)
+        aux_url= self.live_server_url + "/accetta_rifiuta_view/" + id_elemento + "/true/"
+        self.assertEquals(self.browser.current_url,aux_url)
+
+        # controllo sulla pagina esito
+        testo= "Richiesta di adozione accettata!"
+        try:
+            esito = self.browser.find_element(By.XPATH, f'//*[contains(text(), "{testo}")]')
+            assert True
+        except NoSuchElementException:
+            assert False
+
+        # controllo che la richiesta sia stata cancellata dalla lista
+        testo_btn_home= "Home"
+        home_btn = self.browser.find_element(By.XPATH, f'//*[contains(text(), "{testo_btn_home}")]')
+        home_btn.click()
+        time.sleep(3)
+        string= "//tbody" +"//tr[@id=\"" + id_elemento + "\"]"
+        try:
+            tr_by_id = self.browser.find_element(By.XPATH,string)
+        except NoSuchElementException:
+            assert True
+    
+    # da testare
+    def test_rifiuta_richiesta_adozione(self):
+        self.login()
+        time.sleep(4)
+        # sono nella pagina home amministratore
+        text_to_find = "Rifiuta"
+        first_tr = self.browser.find_element(By.XPATH,"//tbody//tr[1]")
+        id_elemento= first_tr.get_attribute("id")
+        accetta_btn = self.browser.find_element(By.XPATH, f'//*[contains(text(), "{text_to_find}")]')
+        accetta_btn.click()
+        time.sleep(3)
+        aux_url= self.live_server_url +"/accetta_rifiuta_view/" + id_elemento + "/false/"
+        self.assertEquals(self.browser.current_url,aux_url)
+        # controllo sulla pagina esito
+        testo= "Richiesta di adozione rifiutata!"
+        try:
+            esito = self.browser.find_element(By.XPATH, f'//*[contains(text(), "{testo}")]')
+            assert True
+        except NoSuchElementException:
+            assert False
+
+        # controllo che la richiesta sia stata cancellata dalla lista
+        testo_btn_home= "Home"
+        home_btn = self.browser.find_element(By.XPATH, f'//*[contains(text(), "{testo_btn_home}")]')
+        home_btn.click()
+        time.sleep(3)
+        string= "//tbody" +"//tr[@id=\"" + id_elemento + "\"]"
+        try:
+            tr_by_id = self.browser.find_element(By.XPATH,string)
+        except NoSuchElementException:
+            assert True
+
+# da testare
+class FilterAdminTest(TestCase):
+    # L’amministratore premendo il tasto filtra può filtrare il contenuto 
+    # della lista delle richieste in base alla specie e alla razza dell’animale 
+    # scelto. Se non vi sono corrispondenze non si visualizza nessuna richiesta
+    def setUp(self):
+        self.browser = webdriver.Chrome()
+        self.live_server_url= "http://127.0.0.1:8000"
+        super(FilterAdminTest, self).setUp()
+        
+    def tearDown(self):
+        self.browser.quit()
+        super(FilterAdminTest,self).tearDown()
+
+    def login(self):
+        self.browser.get(self.live_server_url)
+        time.sleep(3)
+        self.browser.find_element('name','username').send_keys('Admin')
+        self.browser.find_element('name','password').send_keys('Admin')
+        time.sleep(1)
+        text = "Login"
+        login_btn = self.browser.find_element(By.XPATH, f'//*[contains(text(), "{text}")]')
+        login_btn.click()
+        time.sleep(3)
+    
+    # scritta ma da testare
+    def test_filtro_lista(self):
+        self.login()
+        # click sul pulsante lista animali
+        # controllo url deve essere: http://localhost:8000/lista_animaliAmministratore/
+        text_to_find = "Lista Animali"
+        lista_animali_btn = self.browser.find_element(By.XPATH, f'//*[contains(text(), "{text_to_find}")]')
+        lista_animali_btn.click()
+        aux_url= self.live_server_url + "/lista_animaliAmministratore/"
+        self.assertEquals(self.browser.current_url,aux_url)
+        # selezione filtro per specie e invio
+        filtro_specie= "Cane"
+        self.browser.find_element(By.ID,'id_specie').send_keys(filtro_specie)
+        text_to_find = " Cerca "
+        cerca_btn = self.browser.find_element(By.XPATH, f'//*[contains(text(), "{text_to_find}")]')
+        cerca_btn.click()
+        # controllo che il filtro abbia avuto successo
+        # prendo tutte le tr e controllo che il testo all'interno della colonna specie sia
+        # uguale al filtro
+        lista_tr = self.browser.find_elements(By.XPATH, "//tr")
+        for tr in lista_tr:
+            colonna_specie = tr.find_element(By.XPATH, "./td[1]")
+            testo_colonna_specie = colonna_specie.text
+            self.assertEquals(testo_colonna_specie,filtro_specie)
+        
+    # da testare, scritta tutta
+    def test_filtro_lista_vuota(self):
+        self.login()
+        # click sul pulsante lista animali
+        # controllo url deve essere: http://localhost:8000/lista_animaliAmministratore/
+        text_to_find = "Lista Animali"
+        lista_animali_btn = self.browser.find_element(By.XPATH, f'//*[contains(text(), "{text_to_find}")]')
+        lista_animali_btn.click()
+        aux_url= self.live_server_url + "/lista_animaliAmministratore/"
+        self.assertEquals(self.browser.current_url,aux_url)
+        # selezione filtro per specie e invio
+        filtro_specie= "questa specie non esiste"
+        self.browser.find_element(By.ID,'id_specie').send_keys(filtro_specie)
+        text_to_find = " Cerca "
+        cerca_btn = self.browser.find_element(By.XPATH, f'//*[contains(text(), "{text_to_find}")]')
+        cerca_btn.click()
+        # controllo che il filtro non abbia avuto successo
+        # prendo tutte le tr e controllo che l'array di tr abbia lunghezza zero
+        lista_tr = self.browser.find_elements(By.XPATH, "//tr")
+        self.assertEquals(0,len(lista_tr))
+
+# da testare
+class ListAnimalAdminTest(TestCase):
+    # L’amministratore premendo il tasto lista animali visualizza la lista 
+    # degli animali adottabili, può modificare un elemento della lista 
+    # cliccando sul pulsante modifica.
+    def setUp(self):
+        self.browser = webdriver.Chrome()
+        self.live_server_url= "http://127.0.0.1:8000"
+        super(ListAnimalAdminTest, self).setUp()
+        
+    def tearDown(self):
+        self.browser.quit()
+        super(ListAnimalAdminTest,self).tearDown()
+    
+    def login(self):
+        self.browser.get(self.live_server_url)
+        time.sleep(3)
+        self.browser.find_element('name','username').send_keys('Admin')
+        self.browser.find_element('name','password').send_keys('Admin')
+        time.sleep(1)
+        text = "Login"
+        login_btn = self.browser.find_element(By.XPATH, f'//*[contains(text(), "{text}")]')
+        login_btn.click()
+        time.sleep(3)
+    
+    # ok!
+    def go_to_lista_animali(self):
+        text_to_find = "Lista Animali"
+        lista_animali_btn = self.browser.find_element(By.XPATH, f'//*[contains(text(), "{text_to_find}")]')
+        lista_animali_btn.click()
+        time.sleep(3)
+    
+    # da testare
+    def test_modifica_animale(self):
+        self.login()
+        self.go_to_lista_animali()
+        # seleziono la prima tr
+        first_tr = self.browser.find_element(By.XPATH,"//tbody//tr[1]")
+        # salvo l'id dell'animale 
+        id_animale = first_tr.get_attribute("id")
+        # seleziono il primo pulsante modifica
+        text_to_find = "Modifica"
+        modifica_btn = first_tr.find_element(By.XPATH, f'//*[contains(text(), "{text_to_find}")]')
+        # click sul pulsante
+        modifica_btn.click()
+        # controllo di essere nella pagina corretta
+        aux_url= self.live_server_url + "/modifica_animale/" + id_animale + "/"
+        self.assertEquals(self.browser.current_url,aux_url)
+        # modifico
+        self.browser.find_element('name','specie').send_keys('test')
+        self.browser.find_element('name','razza').send_keys('test')
+        self.browser.find_element('name','età').send_keys('1')
+        self.browser.find_element('name','descrizione').send_keys('test')
+        time.sleep(1)
+        # click su invia
+        text = "Salva Modifiche"
+        salva_modifiche_btn = self.browser.find_element(By.XPATH, f'//*[contains(text(), "{text}")]')
+        salva_modifiche_btn.click()
+        time.sleep(3)
+        # torno alla lista animali
+        # controllo che la modifica sia stata effettuata
+        # prendo la tr con id = id_animale
+        # controllo che i td siano corretti
+        stringa="//tbody//tr["+id_animale+"]"
+        tr_post_mod = self.browser.find_element(By.XPATH,stringa)
+        specie = tr_post_mod.find_element(By.XPATH,"//td[1]").text
+        razza = tr_post_mod.find_element(By.XPATH,"//td[2]").text
+        eta = tr_post_mod.find_element(By.XPATH,"//td[3]").text
+        descrizione = tr_post_mod.find_element(By.XPATH,"//td[4]").text
+        self.assertEquals(specie,"test")
+        self.assertEquals(razza,"test")
+        self.assertEquals(eta,"test")
+        self.assertEquals(descrizione,"test")
+
+# da testare modificare user stories togliere riferimento a visualizzazione errore
+class AddAnimalTest(TestCase):
+     # L’amministratore cliccando sul pulsante aggiungi animale può 
+     # inserendo i dati relativi all’animale inserire un nuovo animale nella 
+     # lista degli animali adottabili. Se la compilazione dei campi e corretta e 
+     # completa l’animale viene aggiunto alla lista, altrimenti si visualizza l’errore.
+    def setUp(self):
+        self.browser = webdriver.Chrome()
+        self.live_server_url= "http://127.0.0.1:8000"
+        super(AddAnimalTest, self).setUp()
+
+    def tearDown(self):
+        self.browser.quit()
+        super(AddAnimalTest,self).tearDown()
+
+    def login(self):
+        self.browser.get(self.live_server_url)
+        time.sleep(3)
+        self.browser.find_element('name','username').send_keys('Admin')
+        self.browser.find_element('name','password').send_keys('Admin')
+        time.sleep(1)
+        text = "Login"
+        login_btn = self.browser.find_element(By.XPATH, f'//*[contains(text(), "{text}")]')
+        login_btn.click()
+        time.sleep(3)
+
+    # ok!
+    def go_to_lista_animali(self):
+        text_to_find = "Lista Animali"
+        lista_animali_btn = self.browser.find_element(By.XPATH, f'//*[contains(text(), "{text_to_find}")]')
+        lista_animali_btn.click()
+        time.sleep(3)
+
+    # da testare
+    def test_add_successo(self):
+        self.login()
+        self.go_to_lista_animali()
+        # click sul pulsante aggiungi animale
+        text_to_find = "Aggiungi animale"
+        aggiungi_btn = self.browser.find_element(By.XPATH, f'//*[contains(text(), "{text_to_find}")]')
+        aggiungi_btn.click()
+        time.sleep(3)
+       # controllo di essere nella pagina corretta
+        aux_url= self.live_server_url + "/aggiungiAnimale/"
+        self.assertEquals(self.browser.current_url,aux_url)
+        # compilazione form
+        self.browser.find_element('name','specie').send_keys('SpecieTest')
+        self.browser.find_element('name','razza').send_keys('RazzaTest')
+        self.browser.find_element('name','età').send_keys('1')
+        self.browser.find_element('name','descrizione').send_keys('DescrizioneTest')
+        # click su invia
+        testo_btn_invia = "Aggiungi Animale"
+        invia_btn = self.browser.find_element(By.XPATH, f'//*[contains(text(), "{text_to_find}")]')
+        invia_btn.click()
+        time.sleep(3)
+        # controllo di essere nella lista animali amministratore
+        aux_url= self.live_server_url + "/lista_animaliAmministratore/"
+        self.assertEquals(self.browser.current_url,aux_url)
+        # controllo che l'animale sia stato aggiunto
+        # trova tutti i tr nella pagina
+        lista_tr = self.browser.find_elements(By.XPATH, "//tr")
+        # seleziona l'ultimo
+        ultimo_tr = lista_tr[-1]
+
+        specie = ultimo_tr.find_element(By.XPATH,"//td[1]").text
+        razza = ultimo_tr.find_element(By.XPATH,"//td[2]").text
+        eta = ultimo_tr.find_element(By.XPATH,"//td[3]").text
+        descrizione = ultimo_tr.find_element(By.XPATH,"//td[4]").text
+        self.assertEquals(specie,"SpecieTest")
+        self.assertEquals(razza,"RazzaTest")
+        self.assertEquals(eta,"1")
+        self.assertEquals(descrizione,"DescrizioneTest")
 
 ####################################################################################
-# lato client
+# test di accettazione lato client
 # test ok
 class LoginUserTest(TestCase):
     # L’utente deve inserire username e password scelti in fase 
@@ -293,8 +596,6 @@ class LoginUserTest(TestCase):
     # segnalato l’errore. Se i dati sono corretti l’utente 
     # può vedere la lista di animali adottabili.
     def setUp(self):
-        #drivers_dir = os.path.join(os.path.dirname(__file__),'drivers')
-        #chrome_driver_path = os.path.join(drivers_dir,'chromedriver')
         self.browser = webdriver.Chrome()
         self.live_server_url= "http://127.0.0.1:8000"
         super(LoginUserTest, self).setUp()
@@ -333,3 +634,274 @@ class LoginUserTest(TestCase):
         self.assertEquals(self.browser.current_url,auxUrl)
         errorElem = self.browser.find_element(By.CLASS_NAME,"errorlist")
         self.assertTrue(errorElem.is_displayed())
+
+# da testare modificare la user storie relativa togliere caso errore compilazione
+class UserRegTest(TestCase):
+    #L’utente deve inserire username e password per 
+    # poter effettuare la registrazione. Se i dati 
+    # non sono corretti, un messaggio informa l’utente;
+    # se i dati sono corretti, la procedura di 
+    # registrazione va a buon fine.
+    def setUp(self):
+        self.browser = webdriver.Chrome()
+        self.live_server_url= "http://127.0.0.1:8000"
+        super(UserRegTest, self).setUp()
+
+    def tearDown(self):
+        self.browser.quit()
+        super(UserRegTest,self).tearDown()
+    
+    # da testare
+    def test_register_successo(self):
+        self.browser.get(self.live_server_url)
+        # click sul pulsante register
+        text_to_find = "Register"
+        cerca_btn = self.browser.find_element(By.XPATH, f'//*[contains(text(), "{text_to_find}")]')
+        cerca_btn.click()
+        time.sleep(3)
+        # compilo form
+        self.browser.find_element('name','username').send_keys('Mario')
+        self.browser.find_element('name','password1').send_keys('Password_1234')
+        self.browser.find_element('name','password2').send_keys('Password_1234')
+        # click su invia  il name del pulsante è Create User
+        time.sleep(1)
+        text = "Create User"
+        invia_btn = self.browser.find_element(By.XPATH, f'//*[contains(text(), "{text}")]')
+        invia_btn.click()
+        time.sleep(3)
+        # controllo messaggio di successo
+        try:
+            text = "Richiesta registrazione inviata!"
+            self.browser.find_element(By.XPATH, f'//*[contains(text(), "{text}")]')
+            assert True
+        except NoSuchElementException:
+            assert False
+        # controllo di essere nella pagina per il login
+        aux_url= self.live_server_url
+        self.assertEquals(self.browser.current_url,aux_url)
+        # compilo il form
+        self.browser.find_element('name','username').send_keys('Mario')
+        time.sleep(1)
+        self.browser.find_element('name','password').send_keys('Password_1234')
+        time.sleep(1)
+        # click su login
+        text = "Login"
+        login_btn = self.browser.find_element(By.XPATH, f'//*[contains(text(), "{text}")]')
+        login_btn.click()
+        time.sleep(3)
+        # controllo che l'url di arrivo sia http://127.0.0.1:8000/home/
+        aux_url= self.live_server_url + "/home/"
+        self.assertEquals(self.browser.current_url,aux_url)
+
+# da testare
+class FormAdozioneTest(TestCase):
+    # L’utente compila i campi nome, cognome, indirizzo, 
+    # lavoro, numero di telefono, con i propri dati per inviare 
+    # la richiesta di adozione relativa all’animale scelto.
+    def setUp(self):
+        self.browser = webdriver.Chrome()
+        self.live_server_url= "http://127.0.0.1:8000"
+        super(FormAdozioneTest, self).setUp()
+
+    def tearDown(self):
+        self.browser.quit()
+        super(FormAdozioneTest,self).tearDown()
+    
+    # da testare
+    def loginUtente(self):
+        self.browser.get(self.live_server_url)
+        time.sleep(3)
+        self.browser.find_element('name','username').send_keys('Oingo')
+        self.browser.find_element('name','password').send_keys('Password_123')
+        time.sleep(1)
+        text = "Login"
+        login_btn = self.browser.find_element(By.XPATH, f'//*[contains(text(), "{text}")]')
+        login_btn.click()
+        time.sleep(3)
+    
+    # da testare
+    def loginAdmin(self):
+        self.browser.get(self.live_server_url)
+        time.sleep(3)
+        self.browser.find_element('name','username').send_keys('Admin')
+        self.browser.find_element('name','password').send_keys('Admin')
+        time.sleep(1)
+        text = "Login"
+        login_btn = self.browser.find_element(By.XPATH, f'//*[contains(text(), "{text}")]')
+        login_btn.click()
+        time.sleep(3)
+    
+    # da testare
+    def test_adozione_form(self):
+        self.loginUtente()
+        # selezione il primo tr
+        first_tr = self.browser.find_element(By.XPATH,"//tbody//tr[1]")
+        id_animale= first_tr.get_attribute("id")
+        # click sul bottone adotta
+        text_to_find = "adotta"
+        adotta_btn = first_tr.find_element(By.XPATH, f'//*[contains(text(), "{text_to_find}")]')
+        adotta_btn.click()
+        # controllo che sia nella pagina "http://127.0.0.1:8000/adotta/id_dell'animale/"
+        aux_url= self.live_server_url + "/adotta/" + id_animale + "/"
+        self.assertEquals(self.browser.current_url,aux_url)
+        # compilo il form
+        self.browser.find_element('name','nomeCognome').send_keys('TestNomeCognome')
+        self.browser.find_element('name','indirizzo').send_keys('TestIndirizzo')
+        self.browser.find_element('name','emailNumeroDiTelefono').send_keys('333444555')
+        # click su invia
+        text_to_find = "Invia"
+        cerca_btn = self.browser.find_element(By.XPATH, f'//*[contains(text(), "{text_to_find}")]')
+        cerca_btn.click()
+        # controlla che venga stampato il messaggio ""Richiesta di adozione inviata!"
+        try:
+            text = "Richiesta di adozione inviata!"
+            self.browser.find_element(By.XPATH, f'//*[contains(text(), "{text}")]')
+            assert True
+        except NoSuchElementException:
+            assert False
+        # login come admin
+        self.loginAdmin()
+        # controllo che la richiaesta sia stata inserita
+        lista_tr = self.browser.find_elements(By.XPATH, "//tr")
+        # seleziona l'ultimo
+        ultimo_tr = lista_tr[-1]
+        nomeCognome = ultimo_tr.find_element(By.XPATH,"//td[1]").text
+        indirizzo = ultimo_tr.find_element(By.XPATH,"//td[2]").text
+        self.assertEquals(nomeCognome,"TestNomeCognome")
+        self.assertEquals(indirizzo,"TestIndirizzo")
+
+# da testare
+class HomeUtenteTest(TestCase):
+
+    # L’utente visualizza la lista con gli animali adottabili. 
+    # L'utente clicca sul bottone adotta relativo all’animale 
+    # selezionato che lo reindirizza alla compilazione del form 
+    # per l’adozione.
+    def setUp(self):
+        self.browser = webdriver.Chrome()
+        self.live_server_url= "http://127.0.0.1:8000"
+        super(HomeUtenteTest, self).setUp()
+
+    def tearDown(self):
+        self.browser.quit()
+        super(HomeUtenteTest,self).tearDown()
+    
+    # da testare
+    def loginUtente(self):
+        self.browser.get(self.live_server_url)
+        time.sleep(3)
+        self.browser.find_element('name','username').send_keys('Oingo')
+        self.browser.find_element('name','password').send_keys('Password_123')
+        time.sleep(1)
+        text = "Login"
+        login_btn = self.browser.find_element(By.XPATH, f'//*[contains(text(), "{text}")]')
+        login_btn.click()
+        time.sleep(3)
+    
+    # da testare
+    def test_adotta_reindirizzamento(self):
+
+        self.loginUtente()
+        # click sul bottone adotta
+        text_to_find = "adotta"
+        adotta_btn = first_tr.find_element(By.XPATH, f'//*[contains(text(), "{text_to_find}")]')
+        adotta_btn.click()
+        # controllo che sia nella pagina "http://127.0.0.1:8000/adotta/id_dell'animale/"
+        aux_url= self.live_server_url + "/adotta/" + id_animale + "/"
+        self.assertEquals(self.browser.current_url,aux_url)
+
+# da testare
+class FiltriUtenteTest(TestCase):
+    # L’utente filtra la lista degli animali adottabili in base alla 
+    # specie o alla razza dell’animale. Se la specie o la razza 
+    # inserita non è presente tra gli animali adottabili l’utente 
+    # non visualizza nessun animale.
+    def setUp(self):
+        self.browser = webdriver.Chrome()
+        self.live_server_url= "http://127.0.0.1:8000"
+        super(FiltriUtenteTest, self).setUp()
+
+    def tearDown(self):
+        self.browser.quit()
+        super(FiltriUtenteTest,self).tearDown()
+    
+    # da testare
+    def loginUtente(self):
+        self.browser.get(self.live_server_url)
+        time.sleep(3)
+        self.browser.find_element('name','username').send_keys('Oingo')
+        self.browser.find_element('name','password').send_keys('Password_123')
+        time.sleep(1)
+        text = "Login"
+        login_btn = self.browser.find_element(By.XPATH, f'//*[contains(text(), "{text}")]')
+        login_btn.click()
+        time.sleep(3)
+
+    # da testare
+    def test_filtri_utente_lista(self):
+        self.loginUtente()
+        # compilo form
+        filtro_specie= "Cane"
+        self.browser.find_element(By.ID,'id_specie').send_keys(filtro_specie)
+        text_to_find = " Cerca "
+        cerca_btn = self.browser.find_element(By.XPATH, f'//*[contains(text(), "{text_to_find}")]')
+        cerca_btn.click()
+        # controllo che il filtro abbia avuto successo
+        # prendo tutte le tr e controllo che il testo all'interno della colonna specie sia
+        # uguale al filtro
+        lista_tr = self.browser.find_elements(By.XPATH, "//tr")
+        for tr in lista_tr:
+            colonna_specie = tr.find_element(By.XPATH, "./td[1]")
+            testo_colonna_specie = colonna_specie.text
+            self.assertEquals(testo_colonna_specie,filtro_specie)
+    
+    # da testare
+    def test_filtri_utente_lista_vuota(self):
+        self.login()
+        # compilo form
+        filtro_specie= "questo filtro non esiste"
+        self.browser.find_element(By.ID,'id_specie').send_keys(filtro_specie)
+        text_to_find = " Cerca "
+        cerca_btn = self.browser.find_element(By.XPATH, f'//*[contains(text(), "{text_to_find}")]')
+        cerca_btn.click()
+        # controllo che il filtro non abbia avuto successo
+        # prendo tutte le tr e controllo che l'array di tr abbia lunghezza zero
+        lista_tr = self.browser.find_elements(By.XPATH, "//tr")
+        self.assertEquals(0,len(lista_tr))
+
+# da testare
+class LogoutUtenteTest(TestCase):
+    # L’utente clicca sul pulsante Logout che effettua il logout 
+    # dell’utente e reindirizza l’utente alla pagina di login
+    def setUp(self):
+        self.browser = webdriver.Chrome()
+        self.live_server_url= "http://127.0.0.1:8000"
+        self.aux_url= "/?next=/home/"
+        super(LoginAdminTest, self).setUp()
+
+    def tearDown(self):
+        self.browser.quit()
+        super(LoginAdminTest,self).tearDown()
+    
+    # da testare
+    def loginUtente(self):
+        self.browser.get(self.live_server_url)
+        time.sleep(3)
+        self.browser.find_element('name','username').send_keys('Oingo')
+        self.browser.find_element('name','password').send_keys('Password_123')
+        time.sleep(1)
+        text = "Login"
+        login_btn = self.browser.find_element(By.XPATH, f'//*[contains(text(), "{text}")]')
+        login_btn.click()
+        time.sleep(3)
+    
+    # da testare
+    def test_logout(self):
+        self.loginUtente()
+        text_to_find = "Logout"
+        logout_btn = self.browser.find_element(By.XPATH, f'//*[contains(text(), "{text_to_find}")]')
+        logout_btn.click()
+        time.sleep(3)
+        # controllo reindirizzamento a  "http://127.0.0.1:8000"
+        auxUrl = self.live_server_url + self.aux_url + "home/"
+        self.assertEquals(self.browser.current_url,auxUrl)

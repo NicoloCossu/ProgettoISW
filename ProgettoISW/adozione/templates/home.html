@@ -36,17 +36,9 @@
             </thead>
 
             <tbody> 
-
-                <tr>
-                    <td>-</td>
-                    <td>-</td>
-                    <td>-</td>
-                    <td>-</td>
-                    <td>-</td>
-                </tr>
                 
                 {% for animal in animali %}
-                <tr>
+                <tr id={{animal.ID_animale}}>
                     <td>{{ animal.specie }}</td>
                     <td>{{ animal.razza }}</td>
                     <td>{{ animal.età }}</td>
