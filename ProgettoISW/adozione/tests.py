@@ -276,7 +276,7 @@ class LoginAdminTest(TestCase):
         errorElem = self.browser.find_element(By.CLASS_NAME,"errorlist")
         self.assertTrue(errorElem.is_displayed())
 
-# da testare
+# test ok
 class HomeAdminTest(TestCase):
     #L’amministratore visualizza la lista delle richieste di 
     # adozione con i dati relativi all’utente che ha fatto la richiesta e 
@@ -303,7 +303,8 @@ class HomeAdminTest(TestCase):
         login_btn = self.browser.find_element(By.XPATH, f'//*[contains(text(), "{text}")]')
         login_btn.click()
         time.sleep(3)
-    # da testare
+    
+    # ok
     def test_accetta_richiesta_adozione(self):
         self.login()
         time.sleep(4)
@@ -318,7 +319,7 @@ class HomeAdminTest(TestCase):
         self.assertEquals(self.browser.current_url,aux_url)
 
         # controllo sulla pagina esito
-        testo= "Richiesta di adozione accettata!"
+        testo= "Risposta salvata"
         try:
             esito = self.browser.find_element(By.XPATH, f'//*[contains(text(), "{testo}")]')
             assert True
@@ -336,7 +337,7 @@ class HomeAdminTest(TestCase):
         except NoSuchElementException:
             assert True
     
-    # da testare
+    # ok
     def test_rifiuta_richiesta_adozione(self):
         self.login()
         time.sleep(4)
@@ -350,7 +351,7 @@ class HomeAdminTest(TestCase):
         aux_url= self.live_server_url +"/accetta_rifiuta_view/" + id_elemento + "/false/"
         self.assertEquals(self.browser.current_url,aux_url)
         # controllo sulla pagina esito
-        testo= "Richiesta di adozione rifiutata!"
+        testo= "Risposta salvata"
         try:
             esito = self.browser.find_element(By.XPATH, f'//*[contains(text(), "{testo}")]')
             assert True
