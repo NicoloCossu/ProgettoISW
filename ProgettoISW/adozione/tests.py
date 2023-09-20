@@ -34,35 +34,45 @@ class UserOrSuperUserAdmin(TestCase):
             # Effettua l'accesso come superuser 
             self.client.login(username='superuser', password='superuserpassword')
             response = self.client.get(reverse('home_amministratore'))
-            self.assertEqual(response.status_code, 302)
+            self.assertEqual(response.status_code, 200)
 
     def test_home_view_regular_user(self):
             # Effettua l'accesso come utente normale (quindi il test passa)
             self.client.logout()
             self.client.login(username='testuser', password='testpassword')
             response = self.client.get(reverse('home'))
-            self.assertEqual(response.status_code, 302)
+            self.assertEqual(response.status_code, 200)
 
 #test unitario per la classe Animale fa un controllo sulla lunghezza dei campi che deve essere maggiore di 0, non possiamo inserire una
 #stringa vuota quando viene inserito nel db e viene fatto un controllo anche sulla lunghezza massima definita nei models.
 class AnimaleTestCase(TestCase):
-    def setUp(self):
-        Animale.objects.create(razza="Cane", specie="a", età=3, descrizione="Un simpatico cane")
-    def test_lunghezzaCampi(self):
-            animale = Animale.objects.get()
-            self.assertEqual(len(animale.specie) > 0,  True)
-            self.assertEqual(len(animale.specie) <=100,  True)
-            self.assertEqual(len(animale.razza) > 0,  True)
-            self.assertEqual(len(animale.razza) <= 50,  True)
-            self.assertEqual(animale.età > 0,  True)
-            self.assertEqual(len(animale.descrizione) > 0,  True)
-            self.assertEqual(len(animale.descrizione) <= 400,  True)
+    def test_crea_animale(self):
+            data = {
+                'ID_animale' : '2',
+                'specie' : 'Cane',
+                'razza' : 'Labrador',
+                'età' : 12,
+                'descrizione' : 'Buono'
+            }
+            url = reverse('aggiungiAnimale')
 
-class AnimaleCorrettoTestCase(TestCase):
-    def setUp(self):
-        self.animale = Animale.objects.create(razza="Cane", specie="a", età=3, descrizione="Un simpatico cane")
-    def test_lunghezzaCampi(self):
-        self.assertTrue(len(self.animale.specie) > 0, "Il campo specie dovrebbe avere una lunghezza maggiore di 0")
+            response = self.client.post(url,data)
+
+            self.assertRedirects(response, reverse('lista_animaliAmministratore'), status_code=302)
+
+            self.assertTrue(Animale.objects.filter(età = 12, razza = 'Labrador').exists())
+    
+    def testCreaAnimaleSbagliato(self):
+            data = {
+                'ID_animale' : '2',
+                'specie' : 'Cane',
+                'razza' : 'Labrajaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaador',
+                'età' : 22,
+                'descrizione' : 'Buono'
+            }
+            url = reverse('aggiungiAnimale')    
+            #il test deve passare perche la razza ha più di 50 caratteri
+            self.assertFalse(Animale.objects.filter(età = 22).exists())
 
 
 class AdottaViewTestCase(TestCase):

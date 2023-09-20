@@ -21,7 +21,7 @@ logger.setLevel(logging.DEBUG)  # Imposta il livello a DEBUG per il logger
 @login_required(login_url='login')
 def home(request):
     animali = Animale.objects.all() 
-
+    logger.debug("home")
     myFilter = AnimalFilter(request.GET, queryset=animali)
     animali = myFilter.qs
 
@@ -36,6 +36,7 @@ def home_amministratore(request):
 
     myFilter = RichesteFilter(request.GET, queryset=richieste)
     richieste = myFilter.qs
+    logger.debug("homeAmmm")
 
     context = {'richieste':richieste, 'myFilter': myFilter}
     return render(request,'home_amministratore.html',context)
@@ -84,10 +85,13 @@ def aggiungiAnimale(request):
         form = AggiungiAnimaleForm(request.POST)
         if form.is_valid():
             form.save()
+            logger.debug("OK")
             #Reindirizzo alla pagina lista_animaliAmministratore dopo aver aggiunto l'animale
             return redirect('lista_animaliAmministratore')
-        
         else:
+            logger.debug("ERRORE")
+
+    else:
             form = AggiungiAnimaleForm()
     
     return render(request, 'aggiungi_animale.html', {'form': form})
