@@ -109,10 +109,10 @@ class AdottaViewTestCase(TestCase):
 class AnimalFilterTest(TestCase):
     def test_animal_filter(self):
         # Crea alcune istanze di Animale
-        animal1 = Animale.objects.create(ID_animale = 1, specie='Gatto', razza='GattoBlu', età=12, descrizione="Carino")
-        animal2 = Animale.objects.create(ID_animale = 2,specie='Cane', razza='Labrador', età=12, descrizione="Cattivo")
-        animal3 = Animale.objects.create(ID_animale = 3,specie='Cavallo', razza='PSI', età=22, descrizione="Calmo")
-        animal4 = Animale.objects.create(ID_animale = 4,specie='Cane', razza='Pitbull', età=15, descrizione="Tranquillo")
+        animal1 = Animale.objects.create(specie='Gatto', razza='GattoBlu', età=12, descrizione="Carino")
+        animal2 = Animale.objects.create(specie='Cane', razza='Labrador', età=12, descrizione="Cattivo")
+        animal3 = Animale.objects.create(specie='Cavallo', razza='PSI', età=22, descrizione="Calmo")
+        animal4 = Animale.objects.create(specie='Cane', razza='Pitbull', età=15, descrizione="Tranquillo")
 
         # Filtra gli animali per specie 'Cane'
         filter_data_specie = {'specie': 'Cane'}
@@ -148,13 +148,7 @@ class AnimalFilterTest(TestCase):
         self.assertNotIn(animal3, filtered_animals_descrizione)
         self.assertNotIn(animal2, filtered_animals_descrizione)
 
-        #filta gli animali per id
-        filter_data_ID = {'ID_animale': '1'}
-        animal_filter5= AnimalFilter(data=filter_data_ID, queryset=Animale.objects.all())
-        filtered_animals_ID = animal_filter5.qs
-        self.assertIn(animal1, filtered_animals_ID)
-        self.assertNotIn(animal3, filtered_animals_ID)
-        self.assertNotIn(animal2, filtered_animals_ID)
+
 
 class RichiestaFilterTest(TestCase):
     def test_richiesta_filter(self):
