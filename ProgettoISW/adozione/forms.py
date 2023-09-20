@@ -29,3 +29,9 @@ class ModificaAnimaleForm(forms.ModelForm):
     class Meta:
         model = Animale
         fields = ['specie', 'razza', 'età', 'descrizione']    
+
+#form per l'aggiunta di un nuovo animale
+class AggiungiAnimaleForm(forms.ModelForm):
+    class Meta:
+        model = Animale
+        fields = ['specie', 'razza', 'età', 'descrizione']        
