@@ -142,10 +142,9 @@ def accetta_rifiuta_view(request, richiesta_id, risultato):
             # Elimina l'animale
 
             animale.delete()
-            render(request, 'accetta_rifiuta_richiesta.html', {risultato:risultato})  # Reindirizza a una pagina di successo
+            render(request, 'accetta_rifiuta_richiesta.html')  # Reindirizza a una pagina di successo
         else:
             # Esegui l'azione di rifiuto (ad esempio, cambia lo stato della richiesta)
             richiesta.delete()
-            render(request, 'accetta_rifiuta_richiesta.html', {risultato:risultato})  # Reindirizza a una pagina di successo
-        return render(request, 'accetta_rifiuta_richiesta.html', {risultato:risultato})  # Reindirizza a una pagina di successo
-
+            render(request, 'accetta_rifiuta_richiesta.html')  # Reindirizza a una pagina di successo
+        return render(request, 'accetta_rifiuta_richiesta.html')  # Reindirizza a una pagina di successo
