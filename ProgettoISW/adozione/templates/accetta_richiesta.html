@@ -1,0 +1,26 @@
+{% load static %}
+
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>Risposta</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" type="text/css" href="{% static 'styles.css' %}">
+    </head>
+    <body>
+
+        <div class="navbar">
+            <a class="button_link" href="{% url 'home_amministratore' %}">
+                <button class="pulsante" >Home</button>
+            </a>
+        </div>
+
+    <h1>La richiesta è stata accettata</h1>
+        
+    </body>
+    
+</html>

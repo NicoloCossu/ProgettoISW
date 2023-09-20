@@ -129,22 +129,28 @@ def registerPage(request):
     return render(request, 'register.html', context)
 
 def accetta_rifiuta_view(request, richiesta_id, risultato):
-        azione = risultato.lower()
-        richiesta = RichiestaAdozione.objects.get(pk=richiesta_id)
-        ID_animale = int(richiesta.animale.ID_animale)
-        animale = Animale.objects.get(pk=ID_animale)
-        if azione:
-            # Esegui l'azione di accettazione (ad esempio, cambia lo stato della richiesta)
-            
-            richiesta.richiesta = 'Accettata'
-            richiesta.save()
+    azione = risultato.lower()
+    richiesta = RichiestaAdozione.objects.get(pk=richiesta_id)
+    ID_animale = int(richiesta.animale.ID_animale)
+    animale = Animale.objects.get(pk=ID_animale)
 
-            # Elimina l'animale
+    if azione == 'true':
+        # Esegui l'azione di accettazione (ad esempio, cambia lo stato della richiesta)
+        richiesta.richiesta = 'Accettata'
+        richiesta.save()
 
-            animale.delete()
-            render(request, 'accetta_rifiuta_richiesta.html')  # Reindirizza a una pagina di successo
-        else:
-            # Esegui l'azione di rifiuto (ad esempio, cambia lo stato della richiesta)
-            richiesta.delete()
-            render(request, 'accetta_rifiuta_richiesta.html')  # Reindirizza a una pagina di successo
-        return render(request, 'accetta_rifiuta_richiesta.html')  # Reindirizza a una pagina di successo
+        # Elimina l'animale
+        animale.delete()
+
+        return redirect('success_page_for_acceptance')
+    else:
+        # Esegui l'azione di rifiuto (ad esempio, cambia lo stato della richiesta)
+        richiesta.delete()
+
+        return redirect('success_page_for_rejection')
+
+def accetta_success(request):
+    return render(request, 'accetta_richiesta.html')
+
+def rifiuta_success(request):
+    return render(request, 'rifiuta_richiesta.html')

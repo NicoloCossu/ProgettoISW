@@ -30,5 +30,7 @@ urlpatterns = [
     path('adotta/<int:animale_id>/', views.adotta, name='adotta'),
     path('modifica_animale/<int:animale_id>/', views.modifica_animale, name='modifica_animale'),
     path('accetta_rifiuta_view/<int:richiesta_id>/<str:risultato>/', views.accetta_rifiuta_view, name='accetta_rifiuta_view'),
-    path('aggiungiAnimale/', views.aggiungiAnimale, name = 'aggiungiAnimale')
+    path('aggiungiAnimale/', views.aggiungiAnimale, name = 'aggiungiAnimale'),
+     path('accetta_success/', views.accetta_success, name='success_page_for_acceptance'),
+    path('rifiuta_success/', views.rifiuta_success, name='success_page_for_rejection'),
 ]
