@@ -309,8 +309,7 @@ class ListAnimalAdminTest(TestCase):
 class AddAnimalTest(TestCase):
      # L’amministratore cliccando sul pulsante aggiungi animale può 
      # inserendo i dati relativi all’animale inserire un nuovo animale nella 
-     # lista degli animali adottabili. Se la compilazione dei campi e corretta e 
-     # completa l’animale viene aggiunto alla lista, altrimenti si visualizza l’errore.
+     # lista degli animali adottabili. l’animale viene aggiunto alla lista,
     def setUp(self):
         self.browser = webdriver.Chrome()
         self.live_server_url= "http://127.0.0.1:8000"
@@ -433,8 +432,7 @@ class LoginUserTest(TestCase):
 # test ok
 class UserRegTest(TestCase):
     #L’utente deve inserire username e password per 
-    # poter effettuare la registrazione. Se i dati 
-    # non sono corretti, un messaggio informa l’utente;
+    # poter effettuare la registrazione.
     # se i dati sono corretti, la procedura di 
     # registrazione va a buon fine.
     def setUp(self):
