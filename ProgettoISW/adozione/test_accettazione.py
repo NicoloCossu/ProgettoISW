@@ -563,7 +563,8 @@ class FormAdozioneTest(TestCase):
         # controllo che la richiaesta sia stata inserita
         lista_tr = self.browser.find_elements(By.XPATH, "//tr")
         # seleziona l'ultimo
-        ultimo_tr = lista_tr[-1]
+        for tr in lista_tr:
+            ultimo_tr = tr
         nomeCognome = ultimo_tr.find_element(By.XPATH,"//td[1]").text
         indirizzo = ultimo_tr.find_element(By.XPATH,"//td[2]").text
         self.assertEquals(nomeCognome,"TestNomeCognome")
