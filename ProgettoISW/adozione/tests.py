@@ -710,7 +710,7 @@ class UserRegTest(TestCase):
         aux_url= self.live_server_url + "/home/?next=/home_amministratore/"
         self.assertEquals(self.browser.current_url,aux_url)
 
-# da testare
+# test ok
 class FormAdozioneTest(TestCase):
     # L’utente compila i campi nome, cognome, indirizzo, 
     # lavoro, numero di telefono, con i propri dati per inviare 
@@ -872,13 +872,13 @@ class FiltriUtenteTest(TestCase):
         # uguale al filtro
         lista_tr = self.browser.find_elements(By.XPATH, "//tr")
         for tr in lista_tr:
-            colonna_specie = tr.find_element(By.XPATH, "./td[1]")
+            colonna_specie = tr.find_element(By.XPATH, "//td[1]")
             testo_colonna_specie = colonna_specie.text
             self.assertEquals(testo_colonna_specie,filtro_specie)
     
     # da testare
     def test_filtri_utente_lista_vuota(self):
-        self.login()
+        self.loginUtente()
         # compilo form
         filtro_specie= "questo filtro non esiste"
         self.browser.find_element(By.ID,'id_specie').send_keys(filtro_specie)
@@ -887,7 +887,7 @@ class FiltriUtenteTest(TestCase):
         cerca_btn.click()
         # controllo che il filtro non abbia avuto successo
         # prendo tutte le tr e controllo che l'array di tr abbia lunghezza zero
-        lista_tr = self.browser.find_elements(By.XPATH, "//tr")
+        lista_tr = self.browser.find_elements(By.XPATH, "//tbody//tr")
         self.assertEquals(0,len(lista_tr))
 
 # test ok
