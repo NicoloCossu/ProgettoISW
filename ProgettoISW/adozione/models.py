@@ -1,7 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
 
-# Create your models here.
+
 class Animale(models.Model):
     ID_animale = models.AutoField(primary_key=True)
     specie = models.CharField(max_length=100)

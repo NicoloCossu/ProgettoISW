@@ -6828,3 +6828,74 @@ DEBUG:selenium.webdriver.remote.remote_connection:DELETE http://localhost:62338/
 DEBUG:urllib3.connectionpool:http://localhost:62338 "DELETE /session/7a35845f7aadd5ffde4e97c735cce79c HTTP/1.1" 200 0
 DEBUG:selenium.webdriver.remote.remote_connection:Remote response: status=200 | data={"value":null} | headers=HTTPHeaderDict({'Content-Length': '14', 'Content-Type': 'application/json; charset=utf-8', 'cache-control': 'no-cache'})
 DEBUG:selenium.webdriver.remote.remote_connection:Finished Request
+INFO:django.utils.autoreload:/home/nicolo/Documenti/GitHub/ProgettoISW/ProgettoISW/ProgettoISW/settings.py changed, reloading.
+INFO:django.utils.autoreload:/home/nicolo/Documenti/GitHub/ProgettoISW/ProgettoISW/ProgettoISW/settings.py changed, reloading.
+DEBUG:adozione.views:Richiesta di adozione creata con successo
+DEBUG:adozione.views:OK
+DEBUG:adozione.views:home
+DEBUG:adozione.views:home
+DEBUG:adozione.views:homeAmmm
+DEBUG:adozione.views:Richiesta di adozione creata con successo
+DEBUG:adozione.views:OK
+DEBUG:adozione.views:home
+DEBUG:adozione.views:home
+DEBUG:adozione.views:homeAmmm
+INFO:django.utils.autoreload:/home/nicolo/Documenti/GitHub/ProgettoISW/ProgettoISW/adozione/views.py changed, reloading.
+DEBUG:adozione.views:Richiesta di adozione creata con successo
+DEBUG:adozione.views:OK
+DEBUG:adozione.views:home
+DEBUG:adozione.views:home
+DEBUG:adozione.views:homeAmmm
+WARNING:django.request:Not Found: /favicon.ico
+DEBUG:adozione.views:homeAmmm
+DEBUG:adozione.views:homeAmmm
+DEBUG:adozione.views:home
+DEBUG:adozione.views:Richiesta di adozione creata con successo
+DEBUG:adozione.views:home
+DEBUG:adozione.views:homeAmmm
+DEBUG:adozione.views:homeAmmm
+DEBUG:adozione.views:Richiesta di adozione creata con successo
+DEBUG:adozione.views:OK
+DEBUG:adozione.views:home
+DEBUG:adozione.views:home
+DEBUG:adozione.views:homeAmmm
+DEBUG:adozione.views:Richiesta di adozione creata con successo
+DEBUG:adozione.views:OK
+DEBUG:adozione.views:home
+DEBUG:adozione.views:home
+DEBUG:adozione.views:homeAmmm
+DEBUG:adozione.views:Richiesta di adozione creata con successo
+DEBUG:adozione.views:OK
+DEBUG:adozione.views:home
+DEBUG:adozione.views:home
+DEBUG:adozione.views:homeAmmm
+DEBUG:adozione.views:Richiesta di adozione creata con successo
+DEBUG:adozione.views:OK
+DEBUG:adozione.views:home
+DEBUG:adozione.views:home
+DEBUG:adozione.views:homeAmmm
+DEBUG:adozione.views:Richiesta di adozione creata con successo
+DEBUG:adozione.views:OK
+DEBUG:adozione.views:home
+DEBUG:adozione.views:home
+DEBUG:adozione.views:homeAmmm
+DEBUG:adozione.views:Richiesta di adozione creata con successo
+DEBUG:adozione.views:OK
+DEBUG:adozione.views:home
+DEBUG:adozione.views:home
+DEBUG:adozione.views:homeAmmm
+DEBUG:adozione.views:Richiesta di adozione creata con successo
+DEBUG:adozione.views:OK
+DEBUG:adozione.views:home
+DEBUG:adozione.views:home
+DEBUG:adozione.views:homeAmmm
+INFO:django.utils.autoreload:/home/nicolo/Documenti/GitHub/ProgettoISW/ProgettoISW/adozione/filters.py changed, reloading.
+INFO:django.utils.autoreload:/home/nicolo/Documenti/GitHub/ProgettoISW/ProgettoISW/adozione/filters.py changed, reloading.
+INFO:django.utils.autoreload:/home/nicolo/Documenti/GitHub/ProgettoISW/ProgettoISW/adozione/forms.py changed, reloading.
+INFO:django.utils.autoreload:/home/nicolo/Documenti/GitHub/ProgettoISW/ProgettoISW/adozione/forms.py changed, reloading.
+INFO:django.utils.autoreload:/home/nicolo/Documenti/GitHub/ProgettoISW/ProgettoISW/adozione/models.py changed, reloading.
+INFO:django.utils.autoreload:/home/nicolo/Documenti/GitHub/ProgettoISW/ProgettoISW/adozione/models.py changed, reloading.
+INFO:django.utils.autoreload:/home/nicolo/Documenti/GitHub/ProgettoISW/ProgettoISW/adozione/admin.py changed, reloading.
+INFO:django.utils.autoreload:/home/nicolo/Documenti/GitHub/ProgettoISW/ProgettoISW/adozione/admin.py changed, reloading.
+INFO:django.utils.autoreload:/home/nicolo/Documenti/GitHub/ProgettoISW/ProgettoISW/adozione/views.py changed, reloading.
+INFO:django.utils.autoreload:/home/nicolo/Documenti/GitHub/ProgettoISW/ProgettoISW/adozione/views.py changed, reloading.

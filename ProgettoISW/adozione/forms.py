@@ -2,8 +2,11 @@ from django import forms
 from .models import RichiestaAdozione, Animale
 from django.contrib.auth.models import User
 
-from django.forms.widgets import HiddenInput  # Importa il widget HiddenInput
+from django.forms.widgets import HiddenInput 
 
+#Form per l'inserimento di una nuova richiesta di adozione prendendo in input il nome e il cognome l'indirizzo e l'email o il numero
+# di telefono, l'animale e l'utente verranno impostati nella view di riferimento in base al login e al click sul animale selezionato
+# dall'utente
 class RichiestaAdozioneForm(forms.ModelForm):
     class Meta:
         model = RichiestaAdozione
@@ -24,7 +27,8 @@ class RichiestaAdozioneForm(forms.ModelForm):
         if commit:
             richiesta_adozione.save()
         return richiesta_adozione
-    
+
+
 class ModificaAnimaleForm(forms.ModelForm):
     class Meta:
         model = Animale

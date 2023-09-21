@@ -27,6 +27,11 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
+TEST_RUNNER = 'django.test.runner.DiscoverRunner'
+TEST_DISCOVER_TOP_LEVEL = 'ProgettoISW.adozione'
+TEST_DISCOVER_ROOT = 'ProgettoISW.adozione'
+TEST_DISCOVER_PATTERN = "test_unitari.py"  # Nome del file dei test unitari
+TEST_DISCOVER_PATTERN = "test_accettazione.py"  # Nome del file dei test unitari
 
 # Application definition
 
