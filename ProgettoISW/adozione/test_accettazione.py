@@ -613,7 +613,7 @@ class HomeUtenteTest(TestCase):
         aux_url= self.live_server_url + "/adotta/" + id_animale + "/"
         self.assertEquals(self.browser.current_url,aux_url)
 
-# da testare
+# test ok
 class FiltriUtenteTest(TestCase):
     # L’utente filtra la lista degli animali adottabili in base alla 
     # specie o alla razza dell’animale. Se la specie o la razza 

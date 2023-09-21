@@ -34,18 +34,20 @@
             <thead>
                 <th>Nome e cognome</th>
                 <th>Indirizzo</th>
+                <th>Contatti</th>
                 <th>Specie Animale</th>
                 <th>Razza Animale</th>
                 <th>Età</th>
                 <th>Azione</th>
             </thead>
 
-            <tbody> 
-
+            <tbody>
+                
                 {% for richiesta in richieste %}
                 <tr id={{richiesta.ID_richiestaAdozione}}>
                     <td>{{ richiesta.nomeCognome }}</td>
                     <td>{{ richiesta.indirizzo }}</td>
+                    <td>{{ richiesta.emailNumeroDiTelefono}}</td>
                     <td> {{richiesta.animale.specie}}</td>
                     <td> {{richiesta.animale.razza}}</td>
                     <td> {{richiesta.animale.età}}</td>
