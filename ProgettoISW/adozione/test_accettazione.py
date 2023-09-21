@@ -547,6 +547,7 @@ class FormAdozioneTest(TestCase):
         self.browser.find_element('name','nomeCognome').send_keys('TestNomeCognome')
         self.browser.find_element('name','indirizzo').send_keys('TestIndirizzo')
         self.browser.find_element('name','emailNumeroDiTelefono').send_keys('333444555')
+        time.sleep(3)
         # click su invia
         text_to_find = "Invia"
         cerca_btn = self.browser.find_element(By.XPATH, f'//*[contains(text(), "{text_to_find}")]')
@@ -565,8 +566,8 @@ class FormAdozioneTest(TestCase):
         # seleziona l'ultimo
         for tr in lista_tr:
             ultimo_tr = tr
-        nomeCognome = ultimo_tr.find_element(By.XPATH,"//td[1]").text
-        indirizzo = ultimo_tr.find_element(By.XPATH,"//td[2]").text
+        nomeCognome = ultimo_tr.find_element(By.XPATH,".//td[1]").text
+        indirizzo = ultimo_tr.find_element(By.XPATH,".//td[2]").text
         self.assertEquals(nomeCognome,"TestNomeCognome")
         self.assertEquals(indirizzo,"TestIndirizzo")
 
