@@ -566,8 +566,10 @@ class FormAdozioneTest(TestCase):
             ultimo_tr = tr
         nomeCognome = ultimo_tr.find_element(By.XPATH,".//td[1]").text
         indirizzo = ultimo_tr.find_element(By.XPATH,".//td[2]").text
+        email = ultimo_tr.find_element(By.XPATH,".//td[3]").text
         self.assertEquals(nomeCognome,"TestNomeCognome")
         self.assertEquals(indirizzo,"TestIndirizzo")
+        self.assertEquals(email,'333444555')
 
 # test ok
 class HomeUtenteTest(TestCase):
